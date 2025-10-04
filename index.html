@@ -767,9 +767,25 @@
   }
 
     function zoomText(id) {
-    const section = document.getElementById(id);
-    section.classList.toggle("zoomed");
+  const section = document.getElementById(id);
+  const button = document.getElementById(`lupa-${id}`);
+  const isZoomed = section.classList.contains("zoomed");
+
+  if (isZoomed) {
+    // 🔙 Restablecer
+    section.classList.remove("zoomed");
+    button.textContent = "🔍";
+    section.style.transform = "";
+    section.style.transition = "";
+  } else {
+    // 🔎 Aplicar zoom controlado visualmente (sin cambiar tamaños reales)
+    section.classList.add("zoomed");
+    button.textContent = "🔎";
+    section.style.transform = "scale(1.15)"; // zoom visual, no cambia fuentes
+    section.style.transformOrigin = "top center";
+    section.style.transition = "transform 0.3s ease";
   }
+}
   </script>
 </body>
 </html>
