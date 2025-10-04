@@ -7,6 +7,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body { 
       font-family: 'Shadows Into Light', cursive;
       background: url('https://www.transparenttextures.com/patterns/blackboard.png');
@@ -47,23 +50,31 @@
     .zoomed {
     font-size: 7rem !important;
     }
+    .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+    }
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
-<nav id="menu-navegacion"
-  class="fixed top-0 left-0 w-full bg-black bg-opacity-90 py-2 px-4 z-50 flex flex-wrap justify-center gap-3 text-white text-lg shadow-md backdrop-blur-md font-bold"
->
-  <a href="javascript:void(0)" onclick="toggleSection('entradas')">Entradas</a>
-  <a href="javascript:void(0)" onclick="toggleSection('baguettes')">Baguettes</a>
-  <a href="javascript:void(0)" onclick="toggleSection('pizzas')">Pizzas</a>
-  <a href="javascript:void(0)" onclick="toggleSection('snacks')">Snacks</a>
-  <a href="javascript:void(0)" onclick="toggleSection('alitas')">Alitas</a>
-  <a href="javascript:void(0)" onclick="toggleSection('calientes')">Calientes</a>
-  <a href="javascript:void(0)" onclick="toggleSection('frias')">Frías</a>
-  <a href="javascript:void(0)" onclick="toggleSection('frappes')">Frappés</a>
-  <a href="javascript:void(0)" onclick="toggleSection('panaderia')">Pan</a>
-  <a href="javascript:void(0)" onclick="toggleSection('postres')">Postres</a>
+<nav class="fixed top-0 left-0 w-full bg-black bg-opacity-80 p-2 z-50">
+  <div class="flex overflow-x-auto whitespace-nowrap scrollbar-hide px-4 gap-6 text-white text-xl sm:text-2xl lg:text-3xl font-bold">
+    <a href="#entradas" onclick="toggleSection('entradas')" class="shrink-0">Entradas</a>
+    <a href="#baguettes" onclick="toggleSection('baguettes')" class="shrink-0">Baguettes</a>
+    <a href="#pizzas" onclick="toggleSection('pizzas')" class="shrink-0">Pizzas</a>
+    <a href="#snacks" onclick="toggleSection('snacks')" class="shrink-0">Snacks</a>
+    <a href="#alitas" onclick="toggleSection('alitas')" class="shrink-0">Alitas</a>
+    <a href="#calientes" onclick="toggleSection('calientes')" class="shrink-0">Calientes</a>
+    <a href="#frias" onclick="toggleSection('frias')" class="shrink-0">Frías</a>
+    <a href="#frappes" onclick="toggleSection('frappes')" class="shrink-0">Frappés</a>
+    <a href="#panaderia" onclick="toggleSection('panaderia')" class="shrink-0">Pan</a>
+    <a href="#postres" onclick="toggleSection('postres')" class="shrink-0">Postres</a>
+  </div>
 </nav>
+
   <!-- Header -->
   <header class="text-center mb-12">
   <img src="img/logo-fiesta-cafe.svg" alt="Fiesta & Café Logo" class="mx-auto w-[320px] h-auto drop-shadow-lg">
@@ -79,7 +90,7 @@
     <button id="lupa-entradas" onclick="zoomText('entradas')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="entradas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
+  <ul id="entradas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Molletes</span>
@@ -100,7 +111,7 @@
     <button id="lupa-baguettes" onclick="zoomText('baguettes')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="baguettes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
+  <ul id="baguettes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
 
     <!-- Descripción general -->
     <li class="w-full">
@@ -141,7 +152,7 @@
     <button id="lupa-pizzas" onclick="zoomText('pizzas')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="pizzas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
+  <ul id="pizzas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
 
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
@@ -196,7 +207,7 @@
     <button id="lupa-snacks" onclick="zoomText('snacks')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="snacks" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6">
+  <ul id="snacks" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6 overflow-x-auto whitespace-nowrap">
 
     <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold">Papas a la Francesa (250g)</span>
@@ -239,7 +250,7 @@
     <button id="lupa-alitas" onclick="zoomText('alitas')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="alitas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6">
+  <ul id="alitas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6 overflow-x-auto whitespace-nowrap">
 
     <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold">Orden de 8 pzas. Aderezo + 1 sabor</span>
@@ -277,7 +288,7 @@
     <button id="lupa-calientes" onclick="zoomText('calientes')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="calientes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
+  <ul id="calientes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
 
     <!-- Ítems individuales -->
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
@@ -410,7 +421,7 @@
     <button id="lupa-frias" onclick="zoomText('frias')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="frias" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
+  <ul id="frias" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
 
     <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold">Cacao</span>
@@ -512,7 +523,7 @@
     <button id="lupa-frappes" onclick="zoomText('frappes')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="frappes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6">
+  <ul id="frappes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6 overflow-x-auto whitespace-nowrap">
 
     <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold">Coco</span>
@@ -574,7 +585,7 @@
     <button id="lupa-panaderia" onclick="zoomText('panaderia')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="panaderia" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
+  <ul id="panaderia" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
 
     <!-- Introducción -->
     <li>
@@ -652,7 +663,7 @@
     <button id="lupa-postres" onclick="zoomText('postres')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="postres" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
+  <ul id="postres" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
 
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
       <div>
