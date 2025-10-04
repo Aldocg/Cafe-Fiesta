@@ -76,7 +76,8 @@
        <button id="lupa-entradas" onclick="zoomText('entradas')" class="btn-lupa hidden">🔍</button>
      </div>
 
-     <ul id="entradas" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+     <ul id="entradas" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
        <li class="flex justify-between items-start">
          <div>
@@ -97,7 +98,8 @@
         <button id="lupa-baguettes" onclick="zoomText('baguettes')" class="btn-lupa hidden">🔍</button>
       </div>
 
-      <ul id="baguettes" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+      <ul id="baguettes" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
 
       <!-- Descripción general -->
@@ -124,7 +126,8 @@
         <button id="lupa-pizzas" onclick="zoomText('pizzas')" class="btn-lupa hidden">🔍</button>
       </div>
 
-      <ul id="pizzas" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+      <ul id="pizzas" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
     
       <li class="flex justify-between items-start">
@@ -178,7 +181,8 @@
         <span class="banner" onclick="toggleSection('snacks')">Snacks</span>
         <button id="lupa-snacks" onclick="zoomText('snacks')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="snacks" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+      <ul id="snacks" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
         <li class="flex justify-between"><span>Papas a la Francesa (250g)</span><span>$75</span></li>
         <li class="flex justify-between"><span>Papas Gajo (250g)</span><span>$85</span></li>
@@ -195,7 +199,8 @@
         <span class="banner" onclick="toggleSection('alitas')">Alitas</span>
         <button id="lupa-alitas" onclick="zoomText('alitas')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="alitas" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+      <ul id="alitas" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
         <li class="flex justify-between"><span>Orden de 8 pzas. Aderezo + 1 sabor</span><span>$120</span></li>
         <li class="flex justify-between"><span>Orden de 12 pzas. Aderezo + 2 sabores</span><span>$160</span></li>
@@ -218,7 +223,8 @@
     <button id="lupa-calientes" onclick="zoomText('calientes')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="calientes" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+  <ul id="calientes" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
 
     <li class="flex justify-between items-start">
@@ -301,25 +307,26 @@
       <span class="font-bold">$39</span>
     </li>
 
-    <li class="flex flex-col mt-8">
-  <div class="flex justify-between items-start">
-    <span class="font-bold block">Capuccino Saborizado</span>
+    <li class="flex flex-col mt-8 border-b-2 border-dashed border-gray-600 pb-6">
+  <div class="flex justify-between items-center">
+    <span class="font-bold text-left">Capuccino Saborizado</span>
+    <span class="font-bold text-right">Desde $44</span>
   </div>
-  <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
-    <li>Rompope ........................................$46</li>
-    <li>Caramelo .......................................$44</li>
-    <li>Crema Irlandesa ...........................$46</li>
-    <li>Vainilla Francesa ..........................$44</li>
-    <li>Avellana ....................................... $46</li>
-    <li>Almendra ..................................... $48</li>
-    <li>Amaretto ...................................... $49</li>
-    <li>Té Chai ........................................ $49</li>
-    <li>Coco ............................................ $46</li>
-    <li>Nuez de Macadamia .................. $48</li>
-    <li>Baileys ........................................ $49</li>
-    <li>Moca .......................................... $52</li>
-    <li>Red Velvet ................................... $49</li>
-    <li>Naranja ...................................... $49</li>
+  <ul class="mt-4 text-[3rem] italic text-gray-300 font-serif leading-snug space-y-2">
+    <li class="flex justify-between"><span>Rompope</span><span>$46</span></li>
+    <li class="flex justify-between"><span>Caramelo</span><span>$44</span></li>
+    <li class="flex justify-between"><span>Crema Irlandesa</span><span>$46</span></li>
+    <li class="flex justify-between"><span>Vainilla Francesa</span><span>$44</span></li>
+    <li class="flex justify-between"><span>Avellana</span><span>$46</span></li>
+    <li class="flex justify-between"><span>Almendra</span><span>$48</span></li>
+    <li class="flex justify-between"><span>Amaretto</span><span>$49</span></li>
+    <li class="flex justify-between"><span>Té Chai</span><span>$49</span></li>
+    <li class="flex justify-between"><span>Coco</span><span>$46</span></li>
+    <li class="flex justify-between"><span>Nuez de Macadamia</span><span>$48</span></li>
+    <li class="flex justify-between"><span>Baileys</span><span>$49</span></li>
+    <li class="flex justify-between"><span>Moca</span><span>$52</span></li>
+    <li class="flex justify-between"><span>Red Velvet</span><span>$49</span></li>
+    <li class="flex justify-between"><span>Naranja</span><span>$49</span></li>
   </ul>
 </li>
 
@@ -350,7 +357,8 @@
     <button id="lupa-frias" onclick="zoomText('frias')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="frias" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+  <ul id="frias" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
 
     <li class="flex justify-between items-start">
@@ -467,7 +475,8 @@
         <span class="banner" onclick="toggleSection('frappes')">Frappés</span>
         <button id="lupa-frappes" onclick="zoomText('frappes')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="frappes" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+      <ul id="frappes" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
         <li class="flex justify-between"><span>Coco</span><span>$48</span></li>
         <li class="flex justify-between"><span>Mango</span><span>$48</span></li>
@@ -490,7 +499,8 @@
     <button id="lupa-panaderia" onclick="zoomText('panaderia')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="panaderia" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+  <ul id="panaderia" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
 
     <!-- Introducción -->
@@ -516,16 +526,15 @@
       <p class="text-[3rem] italic text-gray-300 font-serif leading-tight mt-2">
         (Todos nuestros rellenos incluyen fruta y pana)
       </p>
-      <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
-        <li>Philadelphia ..................................$52</li>
-        <li>Nata ..............................................$55</li>
-        <li>Nutella .........................................$52</li>
-        <li>Lechera ........................................$48</li>
-        <li>Mermelada ..................................$46</li>
-        <li>Cajeta ..........................................$48</li>
-        <li>Helado (3 Bolas) ..............................$55</li>
-      </ul>
-    </li>
+      <ul class="mt-4 text-[3rem] italic text-gray-300 font-serif leading-snug space-y-2">
+  <li class="flex justify-between"><span>Philadelphia</span><span>$52</span></li>
+  <li class="flex justify-between"><span>Nata</span><span>$55</span></li>
+  <li class="flex justify-between"><span>Nutella</span><span>$52</span></li>
+  <li class="flex justify-between"><span>Lechera</span><span>$48</span></li>
+  <li class="flex justify-between"><span>Mermelada</span><span>$46</span></li>
+  <li class="flex justify-between"><span>Cajeta</span><span>$48</span></li>
+  <li class="flex justify-between"><span>Helado (3 Bolas)</span><span>$55</span></li>
+</ul>
 
     <!-- Conchas -->
     <li class="flex justify-between items-start mt-12">
@@ -546,15 +555,15 @@
       <p class="text-[3rem] italic text-gray-300 font-serif leading-tight mt-2">
         (Todos nuestros rellenos incluyen fruta y pana)
       </p>
-      <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
-        <li>Nata .......................................... $58</li>
-        <li>Nutella ...................................... $55</li>
-        <li>Philadelphia ............................. $55</li>
-        <li>Lechera ..................................... $48</li>
-        <li>Mermelada ................................ $46</li>
-        <li>Cajeta ........................................ $48</li>
-        <li>Helado (3 Bolas) ....................... $55</li>
-      </ul>
+      <ul class="mt-4 text-[3rem] italic text-gray-300 font-serif leading-snug space-y-2">
+  <li class="flex justify-between"><span>Nata</span><span>$58</span></li>
+  <li class="flex justify-between"><span>Nutella</span><span>$55</span></li>
+  <li class="flex justify-between"><span>Philadelphia</span><span>$55</span></li>
+  <li class="flex justify-between"><span>Lechera</span><span>$48</span></li>
+  <li class="flex justify-between"><span>Mermelada</span><span>$46</span></li>
+  <li class="flex justify-between"><span>Cajeta</span><span>$48</span></li>
+  <li class="flex justify-between"><span>Helado (3 Bolas)</span><span>$55</span></li>
+</ul>
     </li>
 
     <!-- Nota final -->
@@ -576,7 +585,8 @@
     <button id="lupa-postres" onclick="zoomText('postres')" class="btn-lupa hidden">🔍</button>
   </div>
 
-  <ul id="postres" class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl chalk hidden"
+  <ul id="postres" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+ chalk hidden"
 >
 
     <!-- Flan de Café -->
