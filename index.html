@@ -70,53 +70,63 @@
   <main class="max-w-4xl mx-auto space-y-12">
 
     <!-- ENTRADAS -->
-   <section>
-     <div class="controls">
-       <span class="banner" onclick="toggleSection('entradas')">Entradas</span>
-       <button id="lupa-entradas" onclick="zoomText('entradas')" class="btn-lupa hidden">🔍</button>
-     </div>
+<section>
+  <div class="controls">
+    <span class="banner" onclick="toggleSection('entradas')">Entradas</span>
+    <button id="lupa-entradas" onclick="zoomText('entradas')" class="btn-lupa hidden">🔍</button>
+  </div>
 
-     <ul id="entradas" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
- chalk hidden"
->
-       <li class="flex justify-between items-start">
-         <div>
-           <span class="font-bold block">Molletes</span>
-           <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
-              Frijoles, Queso Mozarella y Chorizo Español
-           </span>
-         </div>
-           <span class="font-bold">$65</span>
-        </li>
-     </ul>
-    </section>
+  <ul id="entradas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Molletes</span>
+        <span class="text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug block mt-1">
+          Frijoles, Queso Mozarella y Chorizo Español
+        </span>
+      </div>
+      <span class="font-bold text-base sm:text-lg lg:text-xl">$65</span>
+    </li>
+  </ul>
+</section>
 
     <!-- BAGUETTES -->
-    <section>
-      <div class="controls">
-        <span class="banner" onclick="toggleSection('baguettes')">Baguettes</span>
-        <button id="lupa-baguettes" onclick="zoomText('baguettes')" class="btn-lupa hidden">🔍</button>
-      </div>
+<section>
+  <div class="controls">
+    <span class="banner" onclick="toggleSection('baguettes')">Baguettes</span>
+    <button id="lupa-baguettes" onclick="zoomText('baguettes')" class="btn-lupa hidden">🔍</button>
+  </div>
 
-      <ul id="baguettes" class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
- chalk hidden"
->
+  <ul id="baguettes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8">
 
-      <!-- Descripción general -->
-      <li class="w-full">
-        <p class="text-[3rem] italic text-gray-300 font-serif leading-snug mb-8">
-          Baguette Artesanal, Frijoles Machacados, Pepino en Rodajas, 
-          Mayonesa, Queso Mozarella, Jalapeños y Aderezo de Casa.
-        </p>
-      </li>
+    <!-- Descripción general -->
+    <li class="w-full">
+      <p class="text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug mb-8">
+        Baguette Artesanal, Frijoles Machacados, Pepino en Rodajas,
+        Mayonesa, Queso Mozarella, Jalapeños y Aderezo de Casa.
+      </p>
+    </li>
 
-      <!-- Lista de opciones -->
-      <li class="flex justify-between"><span>Pepperoni</span><span>$85</span></li>
-      <li class="flex justify-between"><span>Jamón de Pavo</span><span>$95</span></li>
-      <li class="flex justify-between"><span>Tocino</span><span>$85</span></li>
-      <li class="flex justify-between"><span>Arrachera</span><span>$120</span></li>
-      </ul>
-   </section>
+    <!-- Lista de opciones -->
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold block">Pepperoni</span>
+      <span class="font-bold text-base sm:text-lg lg:text-xl">$85</span>
+    </li>
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold block">Jamón de Pavo</span>
+      <span class="font-bold text-base sm:text-lg lg:text-xl">$95</span>
+    </li>
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold block">Tocino</span>
+      <span class="font-bold text-base sm:text-lg lg:text-xl">$85</span>
+    </li>
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold block">Arrachera</span>
+      <span class="font-bold text-base sm:text-lg lg:text-xl">$120</span>
+    </li>
+
+  </ul>
+</section>
+
 
 
     <!-- PIZZAS -->
