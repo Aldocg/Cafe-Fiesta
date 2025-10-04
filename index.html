@@ -26,7 +26,11 @@
       transition: background 0.3s;
     }
     .banner:hover { background: rgba(255,255,255,0.15); }
-    ul li { border-bottom: 1px dashed rgba(255,255,255,0.2); padding: 2rem 0; line-height: 1.25;}
+    ul li {
+      border-bottom: 2px dashed rgba(255,255,255,0.4); /* más gruesa y más visible */
+      padding: 2rem 0;
+      line-height: 1.25;
+    }
     .controls { display: flex; justify-content: center; gap: 0.5rem; align-items: center; margin-bottom: 1rem; }
     .btn-lupa {
       padding: 1rem; /* antes era 0.4rem */
@@ -43,7 +47,20 @@
   </style>
 </head>
 <body class="text-white min-h-screen p-6">
-
+<nav id="menu-navegacion"
+  class="fixed top-0 left-0 w-full bg-black bg-opacity-90 py-2 px-4 z-50 flex flex-wrap justify-center gap-3 text-white text-lg shadow-md backdrop-blur-md font-bold"
+>
+  <a href="javascript:void(0)" onclick="toggleSection('entradas')">Entradas</a>
+  <a href="javascript:void(0)" onclick="toggleSection('baguettes')">Baguettes</a>
+  <a href="javascript:void(0)" onclick="toggleSection('pizzas')">Pizzas</a>
+  <a href="javascript:void(0)" onclick="toggleSection('snacks')">Snacks</a>
+  <a href="javascript:void(0)" onclick="toggleSection('alitas')">Alitas</a>
+  <a href="javascript:void(0)" onclick="toggleSection('calientes')">Calientes</a>
+  <a href="javascript:void(0)" onclick="toggleSection('frias')">Frías</a>
+  <a href="javascript:void(0)" onclick="toggleSection('frappes')">Frappés</a>
+  <a href="javascript:void(0)" onclick="toggleSection('panaderia')">Pan</a>
+  <a href="javascript:void(0)" onclick="toggleSection('postres')">Postres</a>
+</nav>
   <!-- Header -->
   <header class="text-center mb-12">
   <img src="img/logo-fiesta-cafe.svg" alt="Fiesta & Café Logo" class="mx-auto w-[320px] h-auto drop-shadow-lg">
@@ -676,6 +693,5 @@
     }
   }
   </script>
-
 </body>
 </html>
