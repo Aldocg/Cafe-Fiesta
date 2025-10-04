@@ -53,14 +53,23 @@
   <main class="max-w-4xl mx-auto space-y-12">
 
     <!-- ENTRADAS -->
-    <section>
-      <div class="controls">
-        <span class="banner" onclick="toggleSection('entradas')">Entradas</span>
-        <button id="lupa-entradas" onclick="zoomText('entradas')" class="btn-lupa hidden">🔍</button>
-      </div>
-      <ul id="entradas" class="text-8xl chalk hidden">
-        <li class="flex justify-between"><span>Molletes</span><span>$65</span></li>
-      </ul>
+   <section>
+     <div class="controls">
+       <span class="banner" onclick="toggleSection('entradas')">Entradas</span>
+       <button id="lupa-entradas" onclick="zoomText('entradas')" class="btn-lupa hidden">🔍</button>
+     </div>
+
+     <ul id="entradas" class="text-8xl chalk hidden">
+       <li class="flex justify-between items-start">
+         <div>
+           <span class="font-bold block">Molletes</span>
+           <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+             Baguette Artesanal, Frijoles, Queso Mozarella y Chorizo Español
+           </span>
+         </div>
+           <span class="font-bold">$65</span>
+        </li>
+     </ul>
     </section>
 
     <!-- BAGUETTES -->
@@ -69,13 +78,25 @@
         <span class="banner" onclick="toggleSection('baguettes')">Baguettes</span>
         <button id="lupa-baguettes" onclick="zoomText('baguettes')" class="btn-lupa hidden">🔍</button>
       </div>
+
       <ul id="baguettes" class="text-8xl chalk hidden">
-        <li class="flex justify-between"><span>Pepperoni</span><span>$85</span></li>
-        <li class="flex justify-between"><span>Jamón de Pavo</span><span>$95</span></li>
-        <li class="flex justify-between"><span>Tocino</span><span>$85</span></li>
-        <li class="flex justify-between"><span>Arrachera</span><span>$120</span></li>
+
+      <!-- Descripción general -->
+      <li class="w-full">
+        <p class="text-[3rem] italic text-gray-300 font-serif leading-snug mb-8">
+          Baguette Artesanal, Frijoles Machacados, Pepino en Rodajas, 
+          Mayonesa, Queso Mozarella, Jalapeños y Aderezo de Casa.
+        </p>
+      </li>
+
+      <!-- Lista de opciones -->
+      <li class="flex justify-between"><span>Pepperoni</span><span>$85</span></li>
+      <li class="flex justify-between"><span>Jamón de Pavo</span><span>$95</span></li>
+      <li class="flex justify-between"><span>Tocino</span><span>$85</span></li>
+      <li class="flex justify-between"><span>Arrachera</span><span>$120</span></li>
       </ul>
-    </section>
+   </section>
+
 
     <!-- PIZZAS -->
     <section>
@@ -83,12 +104,53 @@
         <span class="banner" onclick="toggleSection('pizzas')">Pizzas</span>
         <button id="lupa-pizzas" onclick="zoomText('pizzas')" class="btn-lupa hidden">🔍</button>
       </div>
+
       <ul id="pizzas" class="text-8xl chalk hidden">
-        <li class="flex justify-between"><span>Pepperoni</span><span>$175</span></li>
-        <li class="flex justify-between"><span>Hawaiana</span><span>$200</span></li>
-        <li class="flex justify-between"><span>Mexicana</span><span>$230</span></li>
-      </ul>
-    </section>
+    
+      <li class="flex justify-between items-start">
+        <div>
+          <span class="font-bold block">Pepperoni</span>
+          <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+            Mozzarella y Pepperoni Italiano.
+          </span>
+        </div>
+        <span class="font-bold">$175</span>
+      </li>
+
+      <li class="flex justify-between items-start mt-8">
+        <div>
+          <span class="font-bold block">Hawaiana</span>
+          <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+            Mozzarella, Jamón de Pavo y Piña.
+          </span>
+        </div>
+        <span class="font-bold">$200</span>
+      </li>
+
+      <li class="flex justify-between items-start mt-8">
+        <div>
+          <span class="font-bold block">Mexicana</span>
+          <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+            Carne, Jalapeño, Cebolla Morada, Chorizo Español y Mozzarella.
+          </span>
+        </div>
+        <span class="font-bold">$230</span>
+      </li>
+
+      <li class="flex justify-between items-start mt-8">
+        <div>
+          <span class="font-bold block">Borroca</span>
+          <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+            Arrachera, Champiñón, Tocino y Mozzarella. 
+          <span class="font-bold text-gray-400">Especialidad de la casa.</span>
+          </span>
+        </div>
+        <span class="font-bold">$250</span>
+      </li>
+
+    </ul>
+  </section>
+
 
     <!-- SNACKS -->
     <section>
@@ -113,46 +175,267 @@
         <button id="lupa-alitas" onclick="zoomText('alitas')" class="btn-lupa hidden">🔍</button>
       </div>
       <ul id="alitas" class="text-8xl chalk hidden">
-        <li class="flex justify-between"><span>Orden de 8 pzas. + 1 sabor</span><span>$120</span></li>
-        <li class="flex justify-between"><span>Orden de 12 pzas. + 2 sabores</span><span>$160</span></li>
-        <li class="flex justify-between"><span>Orden de 25 pzas. + 3 sabores</span><span>$295</span></li>
-        <p class="mt-2 text-sm text-gray-300">Salsas: Habanero 🌶 · BBQ 🍖 · Búfalo 🐃</p>
+        <li class="flex justify-between"><span>Orden de 8 pzas. Aderezo + 1 sabor</span><span>$120</span></li>
+        <li class="flex justify-between"><span>Orden de 12 pzas. Aderezo + 2 sabores</span><span>$160</span></li>
+        <li class="flex justify-between"><span>Orden de 25 pzas. Aderezo + 3 sabores</span><span>$295</span></li>
+        <p class="mt-8 text-[3rem] italic text-gray-300 font-serif leading-tight">
+            Nuestras Salsas: Habanero 🌶 🔥🔥🔥🔥 · BBQ 🍖 🔥 · Búfalo 🐃 🔥🔥🔥
+       </p>
+       <p class="mt-4 text-[3rem] italic text-gray-300 font-serif leading-tight">
+            Extras: Queso Amarillo 🧀 · Aderezo Extra 🧴
+       </p>
       </ul>
       
     </section>
 
     <!-- BEBIDAS CALIENTES -->
-    <section>
-      <div class="controls">
-        <span class="banner" onclick="toggleSection('calientes')">Bebidas Calientes</span>
-        <button id="lupa-calientes" onclick="zoomText('calientes')" class="btn-lupa hidden">🔍</button>
+    <!-- BEBIDAS CALIENTES -->
+<section>
+  <div class="controls">
+    <span class="banner" onclick="toggleSection('calientes')">Bebidas Calientes</span>
+    <button id="lupa-calientes" onclick="zoomText('calientes')" class="btn-lupa hidden">🔍</button>
+  </div>
+
+  <ul id="calientes" class="text-8xl chalk hidden">
+
+    <li class="flex justify-between items-start">
+      <div>
+        <span class="font-bold block">Espresso</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Shot de espresso puro.
+        </span>
       </div>
-      <ul id="calientes" class="text-8xl chalk hidden">
-        <li class="flex justify-between"><span>Espresso</span><span>$25</span></li>
-        <li class="flex justify-between"><span>Americano</span><span>$28</span></li>
-        <li class="flex justify-between"><span>Latte</span><span>$39</span></li>
-        <li class="flex justify-between"><span>Lechero</span><span>$42</span></li>
-        <li class="flex justify-between"><span>Capuccino Clásico</span><span>$39</span></li>
-        <li class="flex justify-between"><span>Macchiato</span><span>$32</span></li>
-        <li class="flex justify-between"><span>Chocolate Mexicano</span><span>$46</span></li>
-        <li class="flex justify-between"><span>Chocolate Blanco</span><span>$42</span></li>
-      </ul>
-    </section>
+      <span class="font-bold">$25</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Espresso Cortado</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Shot de espresso con una pequeña cantidad de leche.
+        </span>
+      </div>
+      <span class="font-bold">$28</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Espresso Bailey’s</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Shot de espresso con un toque de Bailey’s y chocolate.
+        </span>
+      </div>
+      <span class="font-bold">$55</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Americano</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          
+        </span>
+      </div>
+      <span class="font-bold">$28</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Macchiato</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Un toque de espresso con leche caliente y espumada.
+        </span>
+      </div>
+      <span class="font-bold">$32</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Latte</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Shot de espresso con leche cremada.
+        </span>
+      </div>
+      <span class="font-bold">$39</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Lechero</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Espresso y leche cremada a partes iguales.
+        </span>
+      </div>
+      <span class="font-bold">$42</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Capuccino Clásico</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Shot de espresso con leche cremosa y aterciopelada.
+        </span>
+      </div>
+      <span class="font-bold">$39</span>
+    </li>
+
+    <li class="flex flex-col mt-8">
+  <div class="flex justify-between items-start">
+    <span class="font-bold block">Capuccino Saborizado</span>
+  </div>
+  <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
+    <li>Rompope ........................................$46</li>
+    <li>Caramelo .......................................$44</li>
+    <li>Crema Irlandesa ...........................$46</li>
+    <li>Vainilla Francesa ..........................$44</li>
+    <li>Avellana ....................................... $46</li>
+    <li>Almendra ..................................... $48</li>
+    <li>Amaretto ...................................... $49</li>
+    <li>Té Chai ........................................ $49</li>
+    <li>Coco ............................................ $46</li>
+    <li>Nuez de Macadamia .................. $48</li>
+    <li>Baileys ........................................ $49</li>
+    <li>Moca .......................................... $52</li>
+    <li>Red Velvet ................................... $49</li>
+    <li>Naranja ...................................... $49</li>
+  </ul>
+</li>
+
+
+    <li class="flex flex-col mt-8">
+  <div class="flex justify-between items-start">
+    <span class="font-bold block">Tisanas</span>
+    <span class="font-bold">$39</span>
+  </div>
+  <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
+    <li>Frutos Rojos</li>
+    <li>Pétalos de Rosa</li>
+    <li>Kiwi-Maracuyá</li>
+    <li>Durazno-Piña-Mango</li>
+  </ul>
+</li>
+
+
+  </ul>
+</section>
+
 
     <!-- BEBIDAS FRÍAS -->
-    <section>
-      <div class="controls">
-        <span class="banner" onclick="toggleSection('frias')">Bebidas Frías</span>
-        <button id="lupa-frias" onclick="zoomText('frias')" class="btn-lupa hidden">🔍</button>
+    <!-- BEBIDAS FRÍAS -->
+<section>
+  <div class="controls">
+    <span class="banner" onclick="toggleSection('frias')">Bebidas Frías</span>
+    <button id="lupa-frias" onclick="zoomText('frias')" class="btn-lupa hidden">🔍</button>
+  </div>
+
+  <ul id="frias" class="text-8xl chalk hidden">
+
+    <li class="flex justify-between items-start">
+      <div>
+        <span class="font-bold block">Cacao</span>
       </div>
-      <ul id="frias" class="text-8xl chalk hidden">
-        <li class="flex justify-between"><span>Limonada</span><span>$32</span></li>
-        <li class="flex justify-between"><span>Naranjada</span><span>$32</span></li>
-        <li class="flex justify-between"><span>Refrescos</span><span>$25</span></li>
-        <li class="flex justify-between"><span>Tisana Fría</span><span>$42</span></li>
-        <li class="flex justify-between"><span>Agua Perrier</span><span>$36</span></li>
+      <span class="font-bold">$46</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Malteadas</span>
+      </div>
+      <span class="font-bold">$35</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Limonada</span>
+      </div>
+      <span class="font-bold">$32</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Naranjada</span>
+      </div>
+      <span class="font-bold">$32</span>
+    </li>
+
+    <li class="flex flex-col mt-8">
+      <div class="flex justify-between items-start">
+        <span class="font-bold block">Tisana Fría</span>
+        <span class="font-bold">$42</span>
+      </div>
+      <p class="text-[3rem] italic text-gray-300 font-serif leading-tight mt-2">
+        Infusión con un toque de hielos al gusto.
+      </p>
+      <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
+        <li>Frutos Rojos</li>
+        <li>Kiwi-Maracuyá</li>
+        <li>Durazno-Piña</li>
+        <li>Pétalos de Rosa</li>
       </ul>
-    </section>
+    </li>
+
+    <li class="flex flex-col mt-8">
+      <div class="flex justify-between items-start">
+        <span class="font-bold block">Soda Italiana</span>
+        <span class="font-bold">$45</span>
+      </div>
+      <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
+        <li>Arándano</li>
+        <li>Blueberry (Mora Azul)</li>
+        <li>Manzana Verde</li>
+      </ul>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Agua Mineral "Perrier"</span>
+      </div>
+      <span class="font-bold">$36</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Jarra de Agua del Día (2 litros)</span>
+      </div>
+      <span class="font-bold">$65</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Botella de Agua</span>
+      </div>
+      <span class="font-bold">$15</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Refrescos</span>
+      </div>
+      <span class="font-bold">$25</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Capuccino Clásico Frío</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Shot de espresso con leche fría y hielos al gusto.
+        </span>
+      </div>
+      <span class="font-bold">$42</span>
+    </li>
+
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Affogato</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Postre italiano con una bola de helado de vainilla y un shot de espresso.
+        </span>
+      </div>
+      <span class="font-bold">$42</span>
+    </li>
+
+  </ul>
+</section>
+
 
     <!-- FRAPPÉS -->
     <section>
@@ -162,39 +445,182 @@
       </div>
       <ul id="frappes" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Coco</span><span>$48</span></li>
+        <li class="flex justify-between"><span>Mango</span><span>$48</span></li>
+        <li class="flex justify-between"><span>Taro</span><span>$52</span></li>
         <li class="flex justify-between"><span>Capuccino</span><span>$62</span></li>
+        <li class="flex justify-between"><span>Moca</span><span>$66</span></li>
         <li class="flex justify-between"><span>Bailey’s</span><span>$85</span></li>
         <li class="flex justify-between"><span>Oreo</span><span>$65</span></li>
+        <li class="flex justify-between"><span>Chocolate Mexicano</span><span>$68</span></li>
+        <li class="flex justify-between"><span>Chocolate Blanco</span><span>$65</span></li>
+        <li class="flex justify-between"><span>Chocolate Suizo</span><span>$67</span></li>
       </ul>
     </section>
 
     <!-- PANADERÍA -->
-    <section>
-      <div class="controls">
-        <span class="banner" onclick="toggleSection('panaderia')">Panadería</span>
-        <button id="lupa-panaderia" onclick="zoomText('panaderia')" class="btn-lupa hidden">🔍</button>
+    <!-- PANADERÍA ARTESANAL -->
+<section>
+  <div class="controls">
+    <span class="banner" onclick="toggleSection('panaderia')">Panadería Artesanal</span>
+    <button id="lupa-panaderia" onclick="zoomText('panaderia')" class="btn-lupa hidden">🔍</button>
+  </div>
+
+  <ul id="panaderia" class="text-8xl chalk hidden">
+
+    <!-- Introducción -->
+    <li class="mt-8">
+      <p class="text-[3rem] italic text-gray-300 font-serif leading-tight text-center">
+        ¡El delicioso Pan de Fiesta tradicional que ya conoces, con nuestros exquisitos rellenos!
+      </p>
+    </li>
+
+    <!-- Pan de Fiesta -->
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Pan de Fiesta</span>
       </div>
-      <ul id="panaderia" class="text-8xl chalk hidden">
-        <li class="flex justify-between"><span>Pan de Fiesta</span><span>$20</span></li>
-        <li class="flex justify-between"><span>Conchas</span><span>$20</span></li>
-        <li class="flex justify-between"><span>Pan de Fiesta Relleno</span><span>$55</span></li>
-        <li class="flex justify-between"><span>Conchas Rellenas</span><span>$58</span></li>
+      <span class="font-bold">$20</span>
+    </li>
+
+    <!-- Pan de Fiesta Relleno -->
+    <li class="flex flex-col mt-8">
+      <div class="flex justify-between items-start">
+        <span class="font-bold block">Pan de Fiesta Relleno con:</span>
+      </div>
+      <p class="text-[3rem] italic text-gray-300 font-serif leading-tight mt-2">
+        (Todos nuestros rellenos incluyen fruta y pana)
+      </p>
+      <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
+        <li>Philadelphia ..................................$52</li>
+        <li>Nata ..............................................$55</li>
+        <li>Nutella .........................................$52</li>
+        <li>Lechera ........................................$48</li>
+        <li>Mermelada ..................................$46</li>
+        <li>Cajeta ..........................................$48</li>
+        <li>Helado (3 Bolas) ..............................$55</li>
       </ul>
-    </section>
+    </li>
+
+    <!-- Conchas -->
+    <li class="flex justify-between items-start mt-12">
+      <div>
+        <span class="font-bold block">Conchas</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Oreo · Nuez · Chocolate · Vainilla
+        </span>
+      </div>
+      <span class="font-bold">$20</span>
+    </li>
+
+    <!-- Conchas Rellenas -->
+    <li class="flex flex-col mt-8">
+      <div class="flex justify-between items-start">
+        <span class="font-bold block">Conchas Rellenas con:</span>
+      </div>
+      <p class="text-[3rem] italic text-gray-300 font-serif leading-tight mt-2">
+        (Todos nuestros rellenos incluyen fruta y pana)
+      </p>
+      <ul class="mt-4 ml-8 text-[3rem] italic text-gray-300 font-serif leading-snug">
+        <li>Nata .......................................... $58</li>
+        <li>Nutella ...................................... $55</li>
+        <li>Philadelphia ............................. $55</li>
+        <li>Lechera ..................................... $48</li>
+        <li>Mermelada ................................ $46</li>
+        <li>Cajeta ........................................ $48</li>
+        <li>Helado (3 Bolas) ....................... $55</li>
+      </ul>
+    </li>
+
+    <!-- Nota final -->
+    <li class="mt-12 text-center">
+      <p class="text-[3rem] italic text-gray-400 font-serif leading-tight">
+        Todo ingrediente extra tiene un costo adicional.
+      </p>
+    </li>
+
+  </ul>
+</section>
+
 
     <!-- POSTRES -->
-    <section>
-      <div class="controls">
-        <span class="banner" onclick="toggleSection('postres')">Postres</span>
-        <button id="lupa-postres" onclick="zoomText('postres')" class="btn-lupa hidden">🔍</button>
+    
+<section>
+  <div class="controls">
+    <span class="banner" onclick="toggleSection('postres')">Postres</span>
+    <button id="lupa-postres" onclick="zoomText('postres')" class="btn-lupa hidden">🔍</button>
+  </div>
+
+  <ul id="postres" class="text-8xl chalk hidden">
+
+    <!-- Flan de Café -->
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Flan de Café</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Acompañado de frutos de temporada y un toque de lechera.
+        </span>
       </div>
-      <ul id="postres" class="text-8xl chalk hidden">
-        <li class="flex justify-between"><span>Flan de Café</span><span>$45</span></li>
-        <li class="flex justify-between"><span>Copa de Helado</span><span>$52</span></li>
-        <li class="flex justify-between"><span>Pay de Limón</span><span>$55</span></li>
-        <li class="flex justify-between"><span>Tiramisú</span><span>$55</span></li>
-      </ul>
-    </section>
+      <span class="font-bold">$45</span>
+    </li>
+
+    <!-- Copa de Helado -->
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Copa de Helado</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Acompañada de frutos de temporada.
+        </span>
+      </div>
+      <span class="font-bold">$52</span>
+    </li>
+
+    <!-- Pay de Limón -->
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Pay de Limón</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Tarta combinada con una deliciosa base crujiente de galleta y crema de limón.
+        </span>
+      </div>
+      <span class="font-bold">$55</span>
+    </li>
+
+    <!-- Tiramisú -->
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Tiramisú</span>
+        <span class="text-[3rem] italic text-gray-300 font-serif leading-tight">
+          Postre frío montado en capas de galleta, queso crema, un toque de café y cocoa italiana.
+        </span>
+      </div>
+      <span class="font-bold">$55</span>
+    </li>
+
+    <!-- Concha -->
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Concha (Variedad de Rellenos)</span>
+      </div>
+      <span class="font-bold">$58</span>
+    </li>
+
+    <!-- Pan de Fiesta -->
+    <li class="flex justify-between items-start mt-8">
+      <div>
+        <span class="font-bold block">Pan de Fiesta (Variedad de Rellenos)</span>
+      </div>
+      <span class="font-bold">$55</span>
+    </li>
+
+    <!-- Leyenda final -->
+    <li class="mt-12 text-center">
+      <p class="text-[3rem] italic text-gray-400 font-serif leading-tight">
+        Todo ingrediente extra tiene un costo adicional.
+      </p>
+    </li>
+
+  </ul>
+</section>
 
   </main>
 
