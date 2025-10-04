@@ -16,41 +16,39 @@
     .banner {
       cursor: pointer;
       display: inline-block;
-      padding: 0.25rem 1.5rem;
+      padding: 0.5rem 2rem;
       border: 2px solid #fff;
       border-radius: 9999px;
       background: rgba(255,255,255,0.05);
       font-family: 'Amatic SC', cursive;
-      font-size: 1.8rem;
+      font-size: 5rem;
       letter-spacing: 2px;
       transition: background 0.3s;
     }
     .banner:hover { background: rgba(255,255,255,0.15); }
-    ul li { border-bottom: 1px dashed rgba(255,255,255,0.2); padding: 0.25rem 0; }
+    ul li { border-bottom: 1px dashed rgba(255,255,255,0.2); padding: 2rem 0; line-height: 1.25;}
     .controls { display: flex; justify-content: center; gap: 0.5rem; align-items: center; margin-bottom: 1rem; }
     .btn-lupa {
-      padding: 0.4rem;
+      padding: 1rem; /* antes era 0.4rem */
       border-radius: 9999px;
       background: rgba(255,255,255,0.2);
       transition: 0.3s;
+      font-size: 3rem; /* aumenta el tamaño del icono 🔍 */
+      cursor: pointer;
     }
-    .btn-lupa:hover { background: rgba(255,255,255,0.4); }
-    .btn-lupa.hidden { display: none; }
+      .btn-lupa:hover {
+      background: rgba(255,255,255,0.4);
+      transform: scale(1.1); /* efecto visual de agrandarse */
+    }
   </style>
 </head>
 <body class="text-white min-h-screen p-6">
 
   <!-- Header -->
   <header class="text-center mb-12">
-    <!-- Rodillo -->
-    <svg class="mx-auto mb-4 w-16 h-16 text-gray-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 64 64">
-      <rect x="10" y="28" width="44" height="8" rx="2" ry="2"/>
-      <rect x="2" y="26" width="6" height="12" rx="1" ry="1"/>
-      <rect x="56" y="26" width="6" height="12" rx="1" ry="1"/>
-    </svg>
-    <h1 class="text-6xl font-bold chalk" style="font-family:'Amatic SC', cursive;">Fiesta & Café</h1>
-    <p class="text-lg chalk">~ Since 2020 ~</p>
-  </header>
+  <img src="img/logo-fiesta-cafe.svg" alt="Fiesta & Café Logo" class="mx-auto w-[320px] h-auto drop-shadow-lg">
+  <p class="text-[3rem] chalk mt-6">~ Since 2020 ~</p>
+</header>
 
   <main class="max-w-4xl mx-auto space-y-12">
 
@@ -60,7 +58,7 @@
         <span class="banner" onclick="toggleSection('entradas')">Entradas</span>
         <button id="lupa-entradas" onclick="zoomText('entradas')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="entradas" class="text-lg chalk hidden">
+      <ul id="entradas" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Molletes</span><span>$65</span></li>
       </ul>
     </section>
@@ -71,7 +69,7 @@
         <span class="banner" onclick="toggleSection('baguettes')">Baguettes</span>
         <button id="lupa-baguettes" onclick="zoomText('baguettes')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="baguettes" class="text-lg chalk hidden">
+      <ul id="baguettes" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Pepperoni</span><span>$85</span></li>
         <li class="flex justify-between"><span>Jamón de Pavo</span><span>$95</span></li>
         <li class="flex justify-between"><span>Tocino</span><span>$85</span></li>
@@ -85,7 +83,7 @@
         <span class="banner" onclick="toggleSection('pizzas')">Pizzas</span>
         <button id="lupa-pizzas" onclick="zoomText('pizzas')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="pizzas" class="text-lg chalk hidden">
+      <ul id="pizzas" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Pepperoni</span><span>$175</span></li>
         <li class="flex justify-between"><span>Hawaiana</span><span>$200</span></li>
         <li class="flex justify-between"><span>Mexicana</span><span>$230</span></li>
@@ -98,7 +96,7 @@
         <span class="banner" onclick="toggleSection('snacks')">Snacks</span>
         <button id="lupa-snacks" onclick="zoomText('snacks')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="snacks" class="text-lg chalk hidden">
+      <ul id="snacks" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Papas a la Francesa (250g)</span><span>$75</span></li>
         <li class="flex justify-between"><span>Papas Gajo (250g)</span><span>$85</span></li>
         <li class="flex justify-between"><span>Aros de Cebolla (12 pzas.)</span><span>$80</span></li>
@@ -114,7 +112,7 @@
         <span class="banner" onclick="toggleSection('alitas')">Alitas</span>
         <button id="lupa-alitas" onclick="zoomText('alitas')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="alitas" class="text-lg chalk hidden">
+      <ul id="alitas" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Orden de 8 pzas. + 1 sabor</span><span>$120</span></li>
         <li class="flex justify-between"><span>Orden de 12 pzas. + 2 sabores</span><span>$160</span></li>
         <li class="flex justify-between"><span>Orden de 25 pzas. + 3 sabores</span><span>$295</span></li>
@@ -129,7 +127,7 @@
         <span class="banner" onclick="toggleSection('calientes')">Bebidas Calientes</span>
         <button id="lupa-calientes" onclick="zoomText('calientes')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="calientes" class="text-lg chalk hidden">
+      <ul id="calientes" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Espresso</span><span>$25</span></li>
         <li class="flex justify-between"><span>Americano</span><span>$28</span></li>
         <li class="flex justify-between"><span>Latte</span><span>$39</span></li>
@@ -147,7 +145,7 @@
         <span class="banner" onclick="toggleSection('frias')">Bebidas Frías</span>
         <button id="lupa-frias" onclick="zoomText('frias')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="frias" class="text-lg chalk hidden">
+      <ul id="frias" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Limonada</span><span>$32</span></li>
         <li class="flex justify-between"><span>Naranjada</span><span>$32</span></li>
         <li class="flex justify-between"><span>Refrescos</span><span>$25</span></li>
@@ -162,7 +160,7 @@
         <span class="banner" onclick="toggleSection('frappes')">Frappés</span>
         <button id="lupa-frappes" onclick="zoomText('frappes')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="frappes" class="text-lg chalk hidden">
+      <ul id="frappes" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Coco</span><span>$48</span></li>
         <li class="flex justify-between"><span>Capuccino</span><span>$62</span></li>
         <li class="flex justify-between"><span>Bailey’s</span><span>$85</span></li>
@@ -176,7 +174,7 @@
         <span class="banner" onclick="toggleSection('panaderia')">Panadería</span>
         <button id="lupa-panaderia" onclick="zoomText('panaderia')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="panaderia" class="text-lg chalk hidden">
+      <ul id="panaderia" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Pan de Fiesta</span><span>$20</span></li>
         <li class="flex justify-between"><span>Conchas</span><span>$20</span></li>
         <li class="flex justify-between"><span>Pan de Fiesta Relleno</span><span>$55</span></li>
@@ -190,7 +188,7 @@
         <span class="banner" onclick="toggleSection('postres')">Postres</span>
         <button id="lupa-postres" onclick="zoomText('postres')" class="btn-lupa hidden">🔍</button>
       </div>
-      <ul id="postres" class="text-lg chalk hidden">
+      <ul id="postres" class="text-8xl chalk hidden">
         <li class="flex justify-between"><span>Flan de Café</span><span>$45</span></li>
         <li class="flex justify-between"><span>Copa de Helado</span><span>$52</span></li>
         <li class="flex justify-between"><span>Pay de Limón</span><span>$55</span></li>
@@ -227,12 +225,17 @@
     }
 
     function zoomText(id) {
-      const section = document.getElementById(id);
-      if (!section.classList.contains("hidden")) {
-        section.classList.toggle("text-lg");
-        section.classList.toggle("text-4xl"); // Zoom triple
+    const section = document.getElementById(id);
+    if (!section.classList.contains("hidden")) {
+      if (section.classList.contains("text-8xl")) {
+        section.classList.remove("text-8xl");
+        section.classList.add("text-[10rem]"); // aumento EXTRA
+      } else {
+        section.classList.remove("text-[10rem]");
+        section.classList.add("text-8xl");
       }
     }
+  }
   </script>
 
 </body>
