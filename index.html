@@ -772,18 +772,29 @@
   const isZoomed = section.classList.contains("zoomed");
 
   if (isZoomed) {
-    // 🔙 Restablecer
+    // 🔙 Restaurar a su tamaño original
     section.classList.remove("zoomed");
     button.textContent = "🔍";
-    section.style.transform = "";
-    section.style.transition = "";
+
+    section.querySelectorAll("span, p, li").forEach(el => {
+      el.style.fontSize = "";
+      el.style.lineHeight = "";
+    });
+
   } else {
-    // 🔎 Aplicar zoom controlado visualmente (sin cambiar tamaños reales)
+    // 🔎 Aplicar zoom suave y controlado (sin scrolls ni overflow)
     section.classList.add("zoomed");
     button.textContent = "🔎";
-    section.style.transform = "scale(1.15)"; // zoom visual, no cambia fuentes
-    section.style.transformOrigin = "top center";
-    section.style.transition = "transform 0.3s ease";
+
+    section.querySelectorAll("span, p, li").forEach(el => {
+      const current = window.getComputedStyle(el);
+      const size = parseFloat(current.fontSize);
+      const lineHeight = parseFloat(current.lineHeight);
+      
+      // Aumenta suavemente 10–15%, más natural y sin romper diseño
+      el.style.fontSize = (size * 1.12) + "px";
+      el.style.lineHeight = (lineHeight * 1.1) + "px";
+    });
   }
 }
   </script>
