@@ -637,18 +637,23 @@
   <!-- Script -->
   <script>
     function toggleSection(id) {
-    // Ocultar todas las secciones
+    const selected = document.getElementById(id);
+    const selectedLupa = document.getElementById("lupa-" + id);
+    const isHidden = selected.classList.contains("hidden");
+
+    // Primero cerramos todas
     document.querySelectorAll("ul[id]").forEach(section => {
       section.classList.add("hidden");
       const lupa = document.getElementById("lupa-" + section.id);
       if (lupa) lupa.classList.add("hidden");
     });
 
-    // Mostrar solo la sección seleccionada
-    const selected = document.getElementById(id);
-    const selectedLupa = document.getElementById("lupa-" + id);
-    selected.classList.remove("hidden");
-    if (selectedLupa) selectedLupa.classList.remove("hidden");
+    // Si estaba oculta, la mostramos (abrimos)
+    if (isHidden) {
+      selected.classList.remove("hidden");
+      if (selectedLupa) selectedLupa.classList.remove("hidden");
+    }
+    // Si ya estaba visible, simplemente la dejamos oculta (ya se cerró arriba)
   }
 
     function zoomText(id) {
