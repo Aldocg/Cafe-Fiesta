@@ -44,6 +44,9 @@
       background: rgba(255,255,255,0.4);
       transform: scale(1.1); /* efecto visual de agrandarse */
     }
+    .zoomed {
+    font-size: 7rem !important;
+    }
   </style>
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
@@ -754,15 +757,7 @@
 
     function zoomText(id) {
     const section = document.getElementById(id);
-    if (!section.classList.contains("hidden")) {
-      if (section.classList.contains("text-8xl")) {
-        section.classList.remove("text-8xl");
-        section.classList.add("text-[10rem]"); // aumento EXTRA
-      } else {
-        section.classList.remove("text-[10rem]");
-        section.classList.add("text-8xl");
-      }
-    }
+    section.classList.toggle("zoomed");
   }
   </script>
 </body>
