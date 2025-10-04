@@ -641,19 +641,26 @@
     const selectedLupa = document.getElementById("lupa-" + id);
     const isHidden = selected.classList.contains("hidden");
 
-    // Primero cerramos todas
+    // Cerrar todas las secciones
     document.querySelectorAll("ul[id]").forEach(section => {
       section.classList.add("hidden");
       const lupa = document.getElementById("lupa-" + section.id);
       if (lupa) lupa.classList.add("hidden");
     });
 
-    // Si estaba oculta, la mostramos (abrimos)
+    // Si estaba oculta, mostrarla y hacer scroll
     if (isHidden) {
       selected.classList.remove("hidden");
       if (selectedLupa) selectedLupa.classList.remove("hidden");
+
+      // Scroll suave al título (banner) correspondiente
+      const bannerElement = document.querySelector(`.banner[onclick="toggleSection('${id}')"]`);
+      if (bannerElement) {
+        setTimeout(() => {
+          bannerElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100); // delay mínimo para asegurar que la sección ya se haya mostrado
+      }
     }
-    // Si ya estaba visible, simplemente la dejamos oculta (ya se cerró arriba)
   }
 
     function zoomText(id) {
