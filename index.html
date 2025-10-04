@@ -90,7 +90,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('entradas')">Entradas</span>
-    <button id="lupa-entradas" onclick="zoomText('entradas')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="entradas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
@@ -111,7 +110,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('baguettes')">Baguettes</span>
-    <button id="lupa-baguettes" onclick="zoomText('baguettes')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="baguettes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
@@ -152,7 +150,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('pizzas')">Pizzas</span>
-    <button id="lupa-pizzas" onclick="zoomText('pizzas')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="pizzas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
@@ -207,7 +204,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('snacks')">Snacks</span>
-    <button id="lupa-snacks" onclick="zoomText('snacks')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="snacks" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6 overflow-x-auto whitespace-nowrap">
@@ -250,7 +246,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('alitas')">Alitas</span>
-    <button id="lupa-alitas" onclick="zoomText('alitas')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="alitas" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6 overflow-x-auto whitespace-nowrap">
@@ -288,7 +283,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('calientes')">Bebidas Calientes</span>
-    <button id="lupa-calientes" onclick="zoomText('calientes')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="calientes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
@@ -421,7 +415,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('frias')">Bebidas Frías</span>
-    <button id="lupa-frias" onclick="zoomText('frias')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="frias" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
@@ -523,7 +516,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('frappes')">Frappés</span>
-    <button id="lupa-frappes" onclick="zoomText('frappes')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="frappes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-6 overflow-x-auto whitespace-nowrap">
@@ -585,7 +577,6 @@
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('panaderia')">Panadería Artesanal</span>
-    <button id="lupa-panaderia" onclick="zoomText('panaderia')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="panaderia" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
@@ -657,13 +648,10 @@
 
   </ul>
 </section>
-
-
 <!-- POSTRES -->
 <section>
   <div class="controls">
     <span class="banner" onclick="toggleSection('postres')">Postres</span>
-    <button id="lupa-postres" onclick="zoomText('postres')" class="btn-lupa hidden">🔍</button>
   </div>
 
   <ul id="postres" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
@@ -795,32 +783,6 @@
     }
   }
 }
-
-function zoomText(id) {
-  const section = document.getElementById(id);
-  const button = document.getElementById(`lupa-${id}`);
-  const container = section.closest("section");
-  const isZoomed = container.classList.contains("zoomed");
-
-  if (isZoomed) {
-    // 🔙 Restaurar tamaño original
-    container.classList.remove("zoomed");
-    button.textContent = "🔍";
-    container.style.transform = "";
-    container.style.transition = "";
-    container.style.overflow = "";
-    container.style.background = "";
-  } else {
-    // 🔎 Aplicar zoom más notorio, sin crear “ventana” ni recorte
-    container.classList.add("zoomed");
-    button.textContent = "🔎";
-    container.style.transform = "scale(1.5)";
-    container.style.transformOrigin = "top center";
-    container.style.transition = "transform 0.3s ease";
-    container.style.overflow = "visible";
-    container.style.background = "transparent";
-  }
-  }
   </script>
 </body>
 </html>
