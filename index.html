@@ -637,18 +637,19 @@
   <!-- Script -->
   <script>
     function toggleSection(id) {
-      const section = document.getElementById(id);
-      const lupa = document.getElementById("lupa-" + id);
-      const isHidden = section.classList.contains("hidden");
+    // Ocultar todas las secciones
+    document.querySelectorAll("ul[id]").forEach(section => {
+      section.classList.add("hidden");
+      const lupa = document.getElementById("lupa-" + section.id);
+      if (lupa) lupa.classList.add("hidden");
+    });
 
-      if (isHidden) {
-        section.classList.remove("hidden");  // mostrar lista
-        lupa.classList.remove("hidden");     // mostrar lupa
-      } else {
-        section.classList.add("hidden");     // ocultar lista
-        lupa.classList.add("hidden");        // ocultar lupa
-      }
-    }
+    // Mostrar solo la sección seleccionada
+    const selected = document.getElementById(id);
+    const selectedLupa = document.getElementById("lupa-" + id);
+    selected.classList.remove("hidden");
+    if (selectedLupa) selectedLupa.classList.remove("hidden");
+  }
 
     function zoomText(id) {
     const section = document.getElementById(id);
