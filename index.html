@@ -100,6 +100,24 @@
     font-size: 3rem; /* 48px */
   }
 }
+ul li span.font-bold:last-child {
+  color: #FFD700;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}
+/* 💙 Azul metálico brillante permanente */
+.texto-descripcion {
+  color: #81D4FA; /* azul metálico brillante */
+  font-style: italic;
+  line-height: 1.4;
+  text-shadow: 0 0 10px rgba(129, 212, 250, 0.8); /* brillo suave */
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.texto-descripcion:hover {
+  color: #81D4FA; /* azul metálico más brillante */
+  text-shadow: 0 0 12px rgba(129, 212, 250, 0.7);
+}
   </style>
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
@@ -136,7 +154,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Molletes</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Frijoles, Queso Mozarella y Chorizo Español
         </span>
@@ -157,7 +175,7 @@
 
     <!-- Descripción general -->
     <li class="w-full">
-      <p class="text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug mb-8">
+      <p class="text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug mb-8">
         Baguette Artesanal, Frijoles Machacados, Pepino en Rodajas,
         Mayonesa, Queso Mozarella, Jalapeños y Aderezo de Casa.
       </p>
@@ -198,8 +216,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Pepperoni</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
-
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
           Mozzarella y Pepperoni Italiano.
         </span>
       </div>
@@ -209,7 +226,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Hawaiana</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Mozzarella, Jamón de Pavo y Piña.
         </span>
@@ -220,7 +237,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Mexicana</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Carne, Jalapeño, Cebolla Morada, Chorizo Español y Mozzarella.
         </span>
@@ -231,10 +248,11 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Borroca</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
-
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
           Arrachera, Champiñón, Tocino y Mozzarella. 
-          <span class="font-bold text-gray-400 block">Especialidad de la casa.</span>
+        </span>
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
+          Especialidad de la casa.
         </span>
       </div>
       <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$250</span>
@@ -312,10 +330,10 @@
 
     <!-- Descripciones / Extras -->
     <li>
-      <p class="text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug mt-4">
+      <p class="text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug mt-4">
         Nuestras Salsas: Habanero 🌶 🔥🔥🔥🔥 · BBQ 🍖 🔥 · Búfalo 🐃 🔥🔥🔥
       </p>
-      <p class="text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug mt-2">
+      <p class="text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug mt-2">
         Extras: Queso Amarillo 🧀 · Aderezo Extra 🧴
       </p>
     </li>
@@ -336,7 +354,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Espresso</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Shot de espresso puro.
         </span>
@@ -347,7 +365,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Espresso Cortado</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Shot de espresso con una pequeña cantidad de leche.
         </span>
@@ -358,7 +376,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Espresso Bailey’s</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Shot de espresso con un toque de Bailey’s y chocolate.
         </span>
@@ -369,7 +387,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Americano</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Café suave estilo americano.
         </span>
@@ -380,7 +398,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Macchiato</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Un toque de espresso con leche caliente y espumada.
         </span>
@@ -391,7 +409,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Latte</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Shot de espresso con leche cremada.
         </span>
@@ -402,7 +420,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Lechero</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Espresso y leche cremada a partes iguales.
         </span>
@@ -413,7 +431,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Capuccino Clásico</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Shot de espresso con leche cremosa y aterciopelada.
         </span>
@@ -427,7 +445,7 @@
         <span class="font-bold block">Capuccino Saborizado</span>
         <span class="font-bold text-xl sm:text-2xl lg:text-4xl">Desde $44</span>
       </div>
-      <ul class="mt-4 text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug space-y-2">
+      <ul class="mt-4 text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug space-y-2">
         <li class="flex justify-between"><span>Rompope</span><span>$46</span></li>
         <li class="flex justify-between"><span>Caramelo</span><span>$44</span></li>
         <li class="flex justify-between"><span>Crema Irlandesa</span><span>$46</span></li>
@@ -451,7 +469,7 @@
         <span class="font-bold block">Tisanas</span>
         <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$39</span>
       </div>
-      <ul class="mt-4 ml-6 text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug list-disc list-inside">
+      <ul class="mt-4 ml-6 text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug list-disc list-inside">
         <li>Frutos Rojos</li>
         <li>Pétalos de Rosa</li>
         <li>Kiwi-Maracuyá</li>
@@ -498,10 +516,10 @@
         <span class="font-bold block">Tisana Fría</span>
         <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
       </div>
-      <p class="text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug mt-2">
+      <p class="text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug mt-2">
         Infusión con un toque de hielos al gusto.
       </p>
-      <ul class="mt-4 ml-6 text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug list-disc list-inside">
+      <ul class="mt-4 ml-6 text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug list-disc list-inside">
         <li>Frutos Rojos</li>
         <li>Kiwi-Maracuyá</li>
         <li>Durazno-Piña</li>
@@ -515,7 +533,7 @@
         <span class="font-bold block">Soda Italiana</span>
         <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$45</span>
       </div>
-      <ul class="mt-4 ml-6 text-base sm:text-lg lg:text-xl italic text-gray-300 leading-snug list-disc list-inside">
+      <ul class="mt-4 ml-6 text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug list-disc list-inside">
         <li>Arándano</li>
         <li>Blueberry (Mora Azul)</li>
         <li>Manzana Verde</li>
@@ -545,7 +563,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
       <div>
         <span class="font-bold block">Capuccino Clásico Frío</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Shot de espresso con leche fría y hielos al gusto.
         </span>
@@ -556,7 +574,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
       <div>
         <span class="font-bold block">Affogato</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Postre italiano con una bola de helado de vainilla y un shot de espresso.
         </span>
@@ -638,7 +656,7 @@
 
     <!-- Introducción -->
     <li>
-      <p class="text-base sm:text-lg lg:text-xl italic text-gray-300 text-center leading-snug">
+      <p class="text-base sm:text-lg lg:text-xl italic texto-descripcion text-center leading-snug">
         ¡El delicioso Pan de Fiesta tradicional que ya conoces, con nuestros exquisitos rellenos!
       </p>
     </li>
@@ -652,10 +670,10 @@
     <!-- Pan de Fiesta Relleno -->
     <li class="flex flex-col border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold">Pan de Fiesta Relleno con:</span>
-      <p class="text-base sm:text-lg lg:text-xl italic text-gray-300 mt-2 leading-snug">
+      <p class="text-base sm:text-lg lg:text-xl italic texto-descripcion mt-2 leading-snug">
         (Todos nuestros rellenos incluyen fruta y pana)
       </p>
-      <ul class="mt-4 space-y-2 text-base sm:text-lg lg:text-xl italic text-gray-300">
+      <ul class="mt-4 space-y-2 text-base sm:text-lg lg:text-xl italic texto-descripcion">
         <li class="flex justify-between"><span>Philadelphia</span><span>$52</span></li>
         <li class="flex justify-between"><span>Nata</span><span>$55</span></li>
         <li class="flex justify-between"><span>Nutella</span><span>$52</span></li>
@@ -670,7 +688,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
       <div>
         <span class="font-bold block">Conchas</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Oreo · Nuez · Chocolate · Vainilla
         </span>
@@ -681,10 +699,10 @@
     <!-- Conchas Rellenas -->
     <li class="flex flex-col border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold">Conchas Rellenas con:</span>
-      <p class="text-base sm:text-lg lg:text-xl italic text-gray-300 mt-2 leading-snug">
+      <p class="text-base sm:text-lg lg:text-xl italic texto-descripcion mt-2 leading-snug">
         (Todos nuestros rellenos incluyen fruta y pana)
       </p>
-      <ul class="mt-4 space-y-2 text-base sm:text-lg lg:text-xl italic text-gray-300">
+      <ul class="mt-4 space-y-2 text-base sm:text-lg lg:text-xl italic texto-descripcion">
         <li class="flex justify-between"><span>Nata</span><span>$58</span></li>
         <li class="flex justify-between"><span>Nutella</span><span>$55</span></li>
         <li class="flex justify-between"><span>Philadelphia</span><span>$55</span></li>
@@ -728,7 +746,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
       <div>
         <span class="font-bold block">Copa de Helado</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Acompañada de frutos de temporada.
         </span>
@@ -739,7 +757,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
       <div>
         <span class="font-bold block">Pay de Limón</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Tarta combinada con una deliciosa base crujiente de galleta y crema de limón.
         </span>
@@ -750,7 +768,7 @@
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
       <div>
         <span class="font-bold block">Tiramisú</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
 
           Postre frío montado en capas de galleta, queso crema, un toque de café y cocoa italiana.
         </span>
