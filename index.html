@@ -6,132 +6,11 @@
   <title>Menú Fiesta & Café</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body { 
-      font-family: 'Shadows Into Light', cursive;
-      background: url('https://www.transparenttextures.com/patterns/blackboard.png');
-      background-color: #111; 
-    }
-    .chalk { text-shadow: 1px 1px 2px rgba(255,255,255,0.15); }
-    .banner {
-      cursor: pointer;
-      display: inline-block;
-      padding: 0.5rem 2rem;
-      border: 2px solid #fff;
-      border-radius: 9999px;
-      background: rgba(255,255,255,0.05);
-      font-family: 'Amatic SC', cursive;
-      font-size: 5rem;
-      letter-spacing: 2px;
-      transition: background 0.3s;
-    }
-    .banner.active {
-      background: linear-gradient(180deg, #FFD700 0%, #FFC700 100%) !important;
-      color: #000 !important;
-      border-color: #FFD700 !important;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
-      transition: all 0.3s ease;
-    }
-    .banner:hover { background: rgba(255,255,255,0.15); }
-    ul li {
-      border-bottom: 2px dashed rgba(255,255,255,0.4); /* más gruesa y más visible */
-      padding: 2rem 0;
-      line-height: 1.25;
-    }
-    .controls { display: flex; justify-content: center; gap: 0.5rem; align-items: center; margin-bottom: 1rem; }
-    .btn-lupa {
-      padding: 1rem; /* antes era 0.4rem */
-      border-radius: 9999px;
-      background: rgba(255,255,255,0.2);
-      transition: 0.3s;
-      font-size: 3rem; /* aumenta el tamaño del icono 🔍 */
-      cursor: pointer;
-    }
-      .btn-lupa:hover {
-      background: rgba(255,255,255,0.4);
-      transform: scale(1.1); /* efecto visual de agrandarse */
-    }
-    section.zoomed {
-       max-width: 100vw;
-       overflow-x: hidden;
-       z-index: 20;
-       position: relative;
-    }
-    .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-    }
-    .scrollbar-hide {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    nav a.active {
-    color: #FFD700; /* Amarillo dorado */
-    text-decoration: underline;
-    text-underline-offset: 6px;
-    transition: all 0.3s ease;
-  }
-
-  nav a {
-    transition: color 0.3s ease, text-decoration 0.3s ease;
-  }
-  @keyframes goldFlash {
-  0%, 100% { filter: drop-shadow(0 0 8px #fff); }
-  50% { filter: drop-shadow(0 0 14px #FFD700); }
-}
-  .logo-animado {
-    animation: goldFlash 2.5s infinite ease-in-out;
-    transition: all 0.3s ease;
-  }
-  ul li span.font-bold:last-child {
-  font-size: 1.75rem; /* 28px aprox */
-}
-
-@media (min-width: 640px) { /* sm */
-  ul li span.font-bold:last-child {
-    font-size: 2.25rem; /* 36px */
-  }
-}
-
-@media (min-width: 1024px) { /* lg */
-  ul li span.font-bold:last-child {
-    font-size: 3rem; /* 48px */
-  }
-}
-ul li span.font-bold:last-child {
-  color: #FFD700;
-  text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
-}
-/* 💙 Azul metálico brillante permanente */
-.texto-descripcion {
-  color: #81D4FA; /* azul metálico brillante */
-  font-style: italic;
-  line-height: 1.4;
-  text-shadow: 0 0 10px rgba(129, 212, 250, 0.8); /* brillo suave */
-  opacity: 1;
-  transition: all 0.3s ease;
-}
-
-.texto-descripcion:hover {
-  color: #81D4FA; /* azul metálico más brillante */
-  text-shadow: 0 0 12px rgba(129, 212, 250, 0.7);
-}
-#btnArriba {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-}
-
-#btnArriba:not(.hidden) {
-  opacity: 1;
-  transform: translateY(0);
-}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
 <nav class="fixed top-0 left-0 w-full bg-black bg-opacity-80 p-2 z-50">
+  
   <div class="flex overflow-x-auto whitespace-nowrap scrollbar-hide px-4 gap-6 text-white  text-3xl sm:text-4xl lg:text-5xl font-bold">
     <a href="#entradas" onclick="toggleSection('entradas')" class="shrink-0">Entradas</a>
     <a href="#baguettes" onclick="toggleSection('baguettes')" class="shrink-0">Baguettes</a>
@@ -145,7 +24,9 @@ ul li span.font-bold:last-child {
     <a href="#postres" onclick="toggleSection('postres')" class="shrink-0">Postres</a>
   </div>
 </nav>
-
+<button id="menuToggle" class="fixed top-20 left-4 z-50 bg-yellow-400 text-black font-bold text-2xl px-4 py-2 rounded-full shadow-md sm:hidden">
+  ☰ Ver Menú
+</button>
   <!-- Header -->
   <header class="text-center mb-12">
   <img src="img/logo-fiesta-cafe.svg" alt="Fiesta & Café Logo" class="mx-auto w-[320px] h-auto drop-shadow-lg logo-animado">
@@ -824,53 +705,8 @@ ul li span.font-bold:last-child {
       <circle cx="32" cy="44" r="6"/>
     </svg>
     <p>© 2025 Fiesta & Café - Todos los derechos reservados</p>
-  </footer>
-
-  <!-- Script -->
-  <script>
-   function toggleSection(id) {
-  const selected = document.getElementById(id);
-  const isHidden = selected.classList.contains("hidden");
-
-  // 🔹 Cerrar todas las secciones
-  document.querySelectorAll("ul[id]").forEach(section => {
-    section.classList.add("hidden");
-  });
-
-  // 🔹 Si estaba oculta, mostrarla
-  if (isHidden) {
-    selected.classList.remove("hidden");
-
-    // 🔹 Resaltar el enlace activo en el nav
-    document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
-    const activeLink = document.querySelector(`nav a[href="#${id}"]`);
-    if (activeLink) activeLink.classList.add("active");
-    // 🔹 Cambiar color del botón .banner activo
-    document.querySelectorAll(".banner").forEach(b => b.classList.remove("active"));
-    const activeBanner = document.querySelector(`.banner[onclick="toggleSection('${id}')"]`);
-    if (activeBanner) activeBanner.classList.add("active");
-    // 🔹 Scroll al banner de la sección
-    const banner = document.querySelector(`.banner[onclick="toggleSection('${id}')"]`);
-    if (banner) {
-      setTimeout(() => banner.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
-    }
-  }
-}
-  </script>
-  <script>
-  const btnArriba = document.getElementById("btnArriba");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      btnArriba.classList.remove("hidden");
-    } else {
-      btnArriba.classList.add("hidden");
-    }
-  });
-
-  btnArriba.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>
+  </footer> 
+  <script src="script.js"></script>
 </body>
+
 </html>
