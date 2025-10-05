@@ -46,3 +46,7 @@
 selected.classList.remove("hidden");
 selected.classList.add("show");
   
+document.getElementById("menuToggle").addEventListener("click", () => {
+  const secciones = document.querySelectorAll("ul[id]");
+  secciones.forEach(section => section.classList.remove("hidden"));
+});
