@@ -77,6 +77,14 @@
   nav a {
     transition: color 0.3s ease, text-decoration 0.3s ease;
   }
+  @keyframes goldFlash {
+  0%, 100% { filter: drop-shadow(0 0 8px #fff); }
+  50% { filter: drop-shadow(0 0 14px #FFD700); }
+}
+  .logo-animado {
+    animation: goldFlash 2.5s infinite ease-in-out;
+    transition: all 0.3s ease;
+  }
   </style>
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
@@ -97,7 +105,7 @@
 
   <!-- Header -->
   <header class="text-center mb-12">
-  <img src="img/logo-fiesta-cafe.svg" alt="Fiesta & Café Logo" class="mx-auto w-[320px] h-auto drop-shadow-lg">
+  <img src="img/logo-fiesta-cafe.svg" alt="Fiesta & Café Logo" class="mx-auto w-[320px] h-auto drop-shadow-lg logo-animado">
   <p class="text-[3rem] chalk mt-6">~ Since 2020 ~</p>
 </header>
 
