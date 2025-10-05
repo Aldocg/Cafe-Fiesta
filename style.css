@@ -18,6 +18,10 @@
       font-size: 5rem;
       letter-spacing: 2px;
       transition: background 0.3s;
+      color: #FFD700; /* color oro */
+      text-shadow: 0 0 4px rgba(255, 215, 0, 0.8); /* brillo suave dorado */
+      /* opcionales para estilo */
+      font-weight: bold;
     }
     .banner.active {
       background: linear-gradient(180deg, #FFD700 0%, #FFC700 100%) !important;

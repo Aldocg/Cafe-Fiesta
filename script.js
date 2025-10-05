@@ -28,3 +28,10 @@ function showOnlySection(sectionId) {
     menuLista.classList.add("hidden");
   }
 }
+document.querySelectorAll('#menuList a').forEach(link => {
+  link.addEventListener('click', function (e) {
+    e.preventDefault(); // Evita que se desplace la página
+    const targetId = this.getAttribute('href').substring(1); // Quita el #
+    showOnlySection(targetId);
+  });
+});
