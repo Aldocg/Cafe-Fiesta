@@ -26,6 +26,11 @@
     }
   }
   }
+  document.addEventListener("DOMContentLoaded", () => {
+  // 🔹 Mostrar sección por defecto
+  toggleSection("entradas");
+
+  // 🔹 Botón "Volver arriba"
   const btnArriba = document.getElementById("btnArriba");
 
   window.addEventListener("scroll", () => {
@@ -39,14 +44,24 @@
   btnArriba.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-  document.getElementById("menuToggle").addEventListener("click", () => {
-  const nav = document.querySelector("nav");
-  window.scrollTo({ top: nav.offsetTop, behavior: "smooth" });
-});
-selected.classList.remove("hidden");
-selected.classList.add("show");
-  
-document.getElementById("menuToggle").addEventListener("click", () => {
-  const secciones = document.querySelectorAll("ul[id]");
-  secciones.forEach(section => section.classList.remove("hidden"));
+
+  // 🔹 Botón "☰ Ver Menú"
+  const menuToggle = document.getElementById("menuToggle");
+  if (menuToggle) {
+    menuToggle.addEventListener("click", () => {
+      const secciones = document.querySelectorAll("ul[id]");
+      secciones.forEach(section => section.classList.remove("hidden"));
+
+      // Scroll automático a la sección nav
+      const nav = document.querySelector("nav");
+      if (nav) {
+        setTimeout(() => {
+          window.scrollTo({ top: nav.offsetTop, behavior: "smooth" });
+        }, 100);
+      }
+
+      // Ocultar el botón después de usarlo
+      menuToggle.style.display = "none";
+    });
+  }
 });
