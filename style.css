@@ -127,47 +127,49 @@ ul li span.font-bold:last-child {
   0% { opacity: 0; transform: translateY(-20px); }
   100% { opacity: 1; transform: translateY(0); }
 }
-HTML + CSS + Javascript dijo:
-
-¡Perfecto! Vamos ahora con los ajustes de la lista desplegable para que se vea más moderna, estilizada y mejor separada.
-
-✅ 2. Ajustes de estilo para la lista de menú
-
-Actualiza el bloque del menú (probablemente un <div id="menuList"> o similar) con estos estilos recomendados:
-
-✅ HTML: Asegúrate de que tu menú tenga este envoltorio
-<div id="menuList" class="absolute top-24 left-4 z-40 bg-white/90 backdrop-blur-md text-black font-semibold rounded-2xl shadow-2xl p-6 w-64 space-y-4 hidden transition-all duration-300">
-  <ul class="space-y-2">
-    <li><a href="#" onclick="toggleSection('entradas')">Entradas</a></li>
-    <li><a href="#" onclick="toggleSection('baguettes')">Baguettes</a></li>
-    <li><a href="#" onclick="toggleSection('pizzas')">Pizzas</a></li>
-    <li><a href="#" onclick="toggleSection('snacks')">Snacks</a></li>
-    <li><a href="#" onclick="toggleSection('alitas')">Alitas</a></li>
-    <li><a href="#" onclick="toggleSection('calientes')">Bebidas Calientes</a></li>
-    <li><a href="#" onclick="toggleSection('frias')">Bebidas Frías</a></li>
-    <li><a href="#" onclick="toggleSection('frappes')">Frappés</a></li>
-    <li><a href="#" onclick="toggleSection('postres')">Postres</a></li>
-  </ul>
-</div>
-
-✅ 3. Ajustes CSS (si no usas Tailwind completamente)
-
-Si no tienes soporte completo de Tailwind o deseas personalización adicional, agrega en tu style.css:
-
-#menuList a {
-  display: block;
-  padding: 12px 16px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #111;
-  font-family: 'Chalkboard', sans-serif;
-  font-size: 1.2rem;
-  text-decoration: none;
+/* Botón "Ver Menú" */
+#menuToggle {
+  background-color: #FFD700; /* oro intenso */
+  color: black;
+  font-family: 'Amatic SC', cursive;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
   transition: background 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#menuToggle:hover {
+  transform: scale(1.05);
+  background-color: #ffe44d;
 }
 
-#menuList a:hover {
-  background-color: #fde047; /* amarillo suave */
-  transform: scale(1.03);
-  color: #000;
+/* Lista del menú lateral */
+#menuList {
+  background-color: black;
+  border-radius: 2rem;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+}
+#menuList ul li a {
+  display: block;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  border-radius: 9999px;
+  background-color: #FFD700;
+  color: black;
+  font-family: 'Amatic SC', cursive;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  transition: transform 0.2s ease;
+}
+
+#menuList ul li a:hover {
+  transform: scale(1.05);
+  background-color: #ffe44d;
 }
