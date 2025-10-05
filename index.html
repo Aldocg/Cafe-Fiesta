@@ -85,6 +85,21 @@
     animation: goldFlash 2.5s infinite ease-in-out;
     transition: all 0.3s ease;
   }
+  ul li span.font-bold:last-child {
+  font-size: 1.75rem; /* 28px aprox */
+}
+
+@media (min-width: 640px) { /* sm */
+  ul li span.font-bold:last-child {
+    font-size: 2.25rem; /* 36px */
+  }
+}
+
+@media (min-width: 1024px) { /* lg */
+  ul li span.font-bold:last-child {
+    font-size: 3rem; /* 48px */
+  }
+}
   </style>
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
@@ -699,13 +714,15 @@
 
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
       <div>
-        <span class="font-bold block">Flan de Café</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic text-gray-300 leading-snug block mt-1">
-
-          Acompañado de frutos de temporada y un toque de lechera.
-        </span>
+        <span class="font-bold block">Pastel de chocolate</span>
       </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$45</span>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    </li>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
+      <div>
+        <span class="font-bold block">Tarta de Ferrero</span>
+      </div>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
     </li>
 
     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
@@ -740,15 +757,21 @@
       </div>
       <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
     </li>
-
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold block">Concha</span>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$25</span>
+    </li>
     <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold block">Concha (Variedad de Rellenos)</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$58</span>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$68</span>
     </li>
-
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold block">Pan de Fiesta</span>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$25</span>
+    </li>
     <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold block">Pan de Fiesta (Variedad de Rellenos)</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
     </li>
 
     <li class="text-center">
