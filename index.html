@@ -29,6 +29,7 @@
     <li><a href="#calientes-section" onclick="showOnlySection('calientes')">Bebidas Calientes</a></li>
     <li><a href="#frias-section" onclick="showOnlySection('frias')">Bebidas Frías</a></li>
     <li><a href="#frappes-section" onclick="showOnlySection('frappes')">Frappés</a></li>
+    <li><a href="#panaderia-section" onclick="showOnlySection('panaderia')">Panaderia Artesanal</a></li>
     <li><a href="#postres-section" onclick="showOnlySection('postres')">Postres</a></li>
   </ul>
 </div>
@@ -73,8 +74,18 @@
 
     <!-- Lista de opciones -->
     <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <!-- Nombre del producto -->
       <span class="font-bold block">Pepperoni</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$85</span>
+
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$85</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Baguettes', 'Pepperoni', '$85')"
+        title="Agregar"
+        >+</button>
+      </div>
     </li>
     <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold block">Jamón de Pavo</span>
@@ -499,16 +510,27 @@
       <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
     </li>
 
-    <li class="flex justify-betw
-
-
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold">Chocolate Mexicano</span>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    </li>
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold">Chocolate Blanco</span>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    </li>
+    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
+      <span class="font-bold">Chocolate Suizo</span>
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    </li>
+  </ul>
+</section>
 <!-- PANADERÍA ARTESANAL -->
-<section>
+<section id="panaderia-section" class="hidden">
   <div class="controls">
     <span class="banner" onclick="toggleSection('panaderia')">Panadería Artesanal</span>
   </div>
 
-  <ul id="panaderia" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk hidden space-y-8 overflow-x-auto whitespace-nowrap">
+<ul id="panaderia" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk space-y-8 overflow-x-auto whitespace-nowrap">
 
     <!-- Introducción -->
     <li>
@@ -671,7 +693,31 @@
 <button id="btnArriba" title="Volver arriba" class="fixed bottom-6 right-6 z-50 p-4 text-black bg-yellow-400 rounded-full shadow-lg text-3xl hidden transition duration-300 hover:scale-110">
   ↑
 </button>
-  </main>
+<!-- MODAL -->
+<div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black bg-opacity-80">
+  <div class="bg-[#111] text-white p-6 rounded-xl shadow-lg w-[90%] max-w-md border-2 border-yellow-400 font-chalk text-center">
+    
+    <h2 class="text-3xl text-yellow-400 font-bold mb-4" id="modal-category">Categoría</h2>
+    <h3 class="text-2xl mb-2" id="modal-product">Producto</h3>
+    <p class="text-xl mb-4" id="modal-price">$0</p>
+
+    <textarea id="modal-note" rows="3" placeholder="Agregar una descripción o nota..." class="w-full p-2 rounded-md text-black mb-4"></textarea>
+
+    <div class="flex justify-center items-center gap-4 mb-4">
+      <button onclick="adjustQuantity(-1)" class="bg-yellow-400 text-black font-bold w-8 h-8 rounded-full">-</button>
+      <span id="modal-quantity" class="text-2xl">1</span>
+      <button onclick="adjustQuantity(1)" class="bg-yellow-400 text-black font-bold w-8 h-8 rounded-full">+</button>
+    </div>
+
+    <div class="flex justify-between mt-6">
+      <button onclick="closeModal()" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md">Cancelar</button>
+      <button class="bg-yellow-400 text-black font-bold px-4 py-2 rounded-md hover:bg-yellow-300">Agregar</button>
+    </div>
+
+  </div>
+</div>
+
+</main>
 <!-- Footer -->
 <footer class="text-center mt-12 text-gray-400 text-sm">
     <!-- Horno -->

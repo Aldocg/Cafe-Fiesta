@@ -41,3 +41,24 @@ function updateCartCount(count) {
 
 // Ejemplo: cambiar a 5 después de 2 segundos
 setTimeout(() => updateCartCount(5), 2000);
+
+function openModal(category, product, price) {
+  document.getElementById('modal-category').textContent = category;
+  document.getElementById('modal-product').textContent = product;
+  document.getElementById('modal-price').textContent = price;
+  document.getElementById('modal-quantity').textContent = 1;
+  document.getElementById('modal-note').value = "";
+  document.getElementById('product-modal').classList.remove('hidden');
+}
+
+function closeModal() {
+  document.getElementById('product-modal').classList.add('hidden');
+}
+
+function adjustQuantity(change) {
+  const quantityElem = document.getElementById('modal-quantity');
+  let qty = parseInt(quantityElem.textContent);
+  qty += change;
+  if (qty < 1) qty = 1;
+  quantityElem.textContent = qty;
+}
