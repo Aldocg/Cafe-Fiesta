@@ -43,4 +43,6 @@
   const nav = document.querySelector("nav");
   window.scrollTo({ top: nav.offsetTop, behavior: "smooth" });
 });
+selected.classList.remove("hidden");
+selected.classList.add("show");
   
