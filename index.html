@@ -28,6 +28,13 @@
       letter-spacing: 2px;
       transition: background 0.3s;
     }
+    .banner.active {
+      background: #FFD700;      /* Amarillo oro */
+      color: #000;              /* Texto negro para contraste */
+      border-color: #FFD700;    /* Borde dorado */
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+      transition: all 0.3s ease;
+    }
     .banner:hover { background: rgba(255,255,255,0.15); }
     ul li {
       border-bottom: 2px dashed rgba(255,255,255,0.4); /* más gruesa y más visible */
@@ -48,11 +55,11 @@
       transform: scale(1.1); /* efecto visual de agrandarse */
     }
     section.zoomed {
-  max-width: 100vw;
-  overflow-x: hidden;
-  z-index: 20;
-  position: relative;
-}
+       max-width: 100vw;
+       overflow-x: hidden;
+       z-index: 20;
+       position: relative;
+    }
     .scrollbar-hide::-webkit-scrollbar {
     display: none;
     }
@@ -60,6 +67,16 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    nav a.active {
+    color: #FFD700; /* Amarillo dorado */
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    transition: all 0.3s ease;
+  }
+
+  nav a {
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+  }
   </style>
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
@@ -730,56 +747,31 @@
 
   <!-- Script -->
   <script>
-    function toggleSection(id) {
-    const selected = document.getElementById(id);
-    const selectedLupa = document.getElementById("lupa-" + id);
-    const isHidden = selected.classList.contains("hidden");
-
-    // Cerrar todas las secciones
-    document.querySelectorAll("ul[id]").forEach(section => {
-      section.classList.add("hidden");
-      const lupa = document.getElementById("lupa-" + section.id);
-      if (lupa) lupa.classList.add("hidden");
-    });
-
-    // Si estaba oculta, mostrarla y hacer scroll
-    if (isHidden) {
-      selected.classList.remove("hidden");
-      if (selectedLupa) selectedLupa.classList.remove("hidden");
-
-      // Scroll suave al título (banner) correspondiente
-      const bannerElement = document.querySelector(`.banner[onclick="toggleSection('${id}')"]`);
-      if (bannerElement) {
-        setTimeout(() => {
-          bannerElement.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100); // delay mínimo para asegurar que la sección ya se haya mostrado
-      }
-    }
-  }
-
    function toggleSection(id) {
   const selected = document.getElementById(id);
-  const selectedLupa = document.getElementById("lupa-" + id);
   const isHidden = selected.classList.contains("hidden");
 
-  // Cerrar todas las secciones
+  // 🔹 Cerrar todas las secciones
   document.querySelectorAll("ul[id]").forEach(section => {
     section.classList.add("hidden");
-    const lupa = document.getElementById("lupa-" + section.id);
-    if (lupa) lupa.classList.add("hidden");
   });
 
-  // Si estaba oculta, mostrarla y hacer scroll
+  // 🔹 Si estaba oculta, mostrarla
   if (isHidden) {
     selected.classList.remove("hidden");
-    if (selectedLupa) selectedLupa.classList.remove("hidden");
 
-    // Scroll suave al título (banner) correspondiente
-    const bannerElement = document.querySelector(`.banner[onclick="toggleSection('${id}')"]`);
-    if (bannerElement) {
-      setTimeout(() => {
-        bannerElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100);
+    // 🔹 Resaltar el enlace activo en el nav
+    document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
+    const activeLink = document.querySelector(`nav a[href="#${id}"]`);
+    if (activeLink) activeLink.classList.add("active");
+    // 🔹 Cambiar color del botón .banner activo
+    document.querySelectorAll(".banner").forEach(b => b.classList.remove("active"));
+    const activeBanner = document.querySelector(`.banner[onclick="toggleSection('${id}')"]`);
+    if (activeBanner) activeBanner.classList.add("active");
+    // 🔹 Scroll al banner de la sección
+    const banner = document.querySelector(`.banner[onclick="toggleSection('${id}')"]`);
+    if (banner) {
+      setTimeout(() => banner.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
     }
   }
 }
