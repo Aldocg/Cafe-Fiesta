@@ -35,3 +35,9 @@ document.querySelectorAll('#menuList a').forEach(link => {
     showOnlySection(targetId);
   });
 });
+function updateCartCount(count) {
+  document.getElementById('cartCount').textContent = count;
+}
+
+// Ejemplo: cambiar a 5 después de 2 segundos
+setTimeout(() => updateCartCount(5), 2000);

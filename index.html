@@ -14,9 +14,11 @@
   <img src="img/logo-fiesta-cafe.svg" alt="Fiesta & Café Logo" class="mx-auto w-[320px] h-auto drop-shadow-lg logo-animado">
   <p class="text-[3rem] chalk mt-6">~ Since 2020 ~</p>
 </header>
-<button id="menuToggle" class="fixed top-8 left-4 z-50 bg-white/90 backdrop-blur-md text-black font-semibold text-lg sm:text-xl px-6 py-2 rounded-xl shadow-2xl hover:bg-yellow-300 hover:text-black transition-all duration-300">
-  ☰ Ver Menú
-</button>
+<div class="top-bar fixed top-4 left-0 right-0 z-50 px-4 flex justify-between items-center">
+  <button id="menuToggle" class="boton-estilo">☰ Ver Menú</button>
+  <button id="cartButton" class="boton-estilo">🛒 <span id="cartCount">0</span></button>
+</div>
+
 <div id="menuList" class="absolute top-24 left-4 z-40 bg-white/90 backdrop-blur-md text-black font-semibold rounded-2xl shadow-2xl p-6 w-64 space-y-4 hidden transition-all duration-300">
   <ul class="space-y-2">
     <li><a href="#entradas-section" onclick="showOnlySection('entradas')">Entradas</a></li>

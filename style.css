@@ -193,3 +193,49 @@ ul li span.font-bold:last-child {
 #menuList ul li:not(:last-child) {
   border-bottom: none;
 }
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+#cartButton {
+  background-color: #FFD700;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.5rem 1rem;
+  font-family: 'Amatic SC', cursive;
+  font-size: 1.5rem;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#cartCount {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: black;
+}
+.boton-estilo {
+  background-color: #FFD700;
+  border: none;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.25rem;
+  border-radius: 9999px;
+  padding: 6px 16px;
+  box-shadow: 0 0 10px #FFD70066;
+  transition: all 0.3s ease;
+}
+.boton-estilo:hover {
+  background-color: #ffcd00;
+  transform: scale(1.05);
+}
+
