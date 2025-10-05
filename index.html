@@ -118,6 +118,16 @@ ul li span.font-bold:last-child {
   color: #81D4FA; /* azul metálico más brillante */
   text-shadow: 0 0 12px rgba(129, 212, 250, 0.7);
 }
+#btnArriba {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+#btnArriba:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+}
   </style>
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
@@ -801,7 +811,9 @@ ul li span.font-bold:last-child {
   </ul>
 </section>
 
-
+<button id="btnArriba" title="Volver arriba" class="fixed bottom-6 right-6 z-50 p-4 text-black bg-yellow-400 rounded-full shadow-lg text-3xl hidden transition duration-300 hover:scale-110">
+  ↑
+</button>
   </main>
 
   <!-- Footer -->
@@ -845,5 +857,20 @@ ul li span.font-bold:last-child {
   }
 }
   </script>
+  <script>
+  const btnArriba = document.getElementById("btnArriba");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      btnArriba.classList.remove("hidden");
+    } else {
+      btnArriba.classList.add("hidden");
+    }
+  });
+
+  btnArriba.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
 </body>
 </html>
