@@ -15,23 +15,36 @@
   <p class="text-[3rem] chalk mt-6">~ Since 2020 ~</p>
 </header>
 <div class="top-bar fixed top-4 left-0 right-0 z-50 px-4 flex justify-between items-center">
-  <button id="menuToggle" class="boton-estilo">☰ Ver Menú</button>
-  <button id="cartButton" class="boton-estilo">🛒 <span id="cartCount">0</span></button>
-</div>
-
-<div id="menuList" class="absolute top-24 left-4 z-40 bg-white/90 backdrop-blur-md text-black font-semibold rounded-2xl shadow-2xl p-6 w-64 space-y-4 hidden transition-all duration-300">
-  <ul class="space-y-2">
+  <div class="relative">
+    <button id="menuToggle" class="boton-estilo">☰ Ver Menú</button>
+    <div id="menuList" class="menu-list hidden">
+  <ul>
     <li><a href="#entradas-section" onclick="showOnlySection('entradas')">Entradas</a></li>
     <li><a href="#baguettes-section" onclick="showOnlySection('baguettes')">Baguettes</a></li>
     <li><a href="#pizzas-section" onclick="showOnlySection('pizzas')">Pizzas</a></li>
     <li><a href="#snacks-section" onclick="showOnlySection('snacks')">Snacks</a></li>
     <li><a href="#alitas-section" onclick="showOnlySection('alitas')">Alitas</a></li>
-    <li><a href="#calientes-section" onclick="showOnlySection('calientes')">Bebidas Calientes</a></li>
-    <li><a href="#frias-section" onclick="showOnlySection('frias')">Bebidas Frías</a></li>
-    <li><a href="#frappes-section" onclick="showOnlySection('frappes')">Frappés</a></li>
-    <li><a href="#panaderia-section" onclick="showOnlySection('panaderia')">Panaderia Artesanal</a></li>
+
+    <!-- Menú Padre -->
+    <li class="relative parent-menu bebidas-toggle">
+      <a href="#bebidas-section">
+        Bebidas <span class="arrow-down">▼</span>
+      </a>
+      <ul class="bebidas-submenu submenu hidden mt-1 ml-4 space-y-1">
+        <li><a href="#calientes-section">Calientes</a></li>
+        <li><a href="#frias-section">Frías</a></li>
+        <li><a href="#frappes-section">Frappés</a></li>
+      </ul>
+    </li>
+
+    <li><a href="#panaderia-section" onclick="showOnlySection('panaderia')">Panadería Artesanal</a></li>
     <li><a href="#postres-section" onclick="showOnlySection('postres')">Postres</a></li>
   </ul>
+</div>
+
+  </div>
+
+  <button id="cartButton" class="boton-estilo">🛒 <span id="cartCount">0</span></button>
 </div>
 
 <main class="max-w-4xl mx-auto space-y-12">
