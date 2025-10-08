@@ -239,4 +239,108 @@ function renderCart() {
     };
   });
 }
+// === CHECKOUT: PDF + WhatsApp ===
+const WHATSAPP_PHONE = ""; 
+// Opcional: "5218112345678" para abrir chat con ese número. Vacío -> selector de contacto.
+
+document.getElementById('checkoutBtn')?.addEventListener('click', onCheckout);
+
+async function onCheckout() {
+  if (!cart || cart.length === 0) { toast('Carrito vacío'); return; }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const orderId = 'FC-' + new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14);
+  const now = new Date();
+  const fecha = now.toLocaleString();
+
+  // Encabezado
+  doc.setFontSize(16);
+  doc.text('Fiesta & Café - Pedido', 14, 18);
+  doc.setFontSize(11);
+  doc.text(`Orden: ${orderId}`, 14, 26);
+  doc.text(`Fecha: ${fecha}`, 14, 32);
+
+  // Tabla de items
+  const rows = [];
+  let total = 0;
+  cart.forEach(it => {
+    const p = parseFloat(it.price.replace(/[^0-9.]/g, '')) || 0;
+    const sub = p * it.qty;
+    total += sub;
+    rows.push([
+      String(it.qty),
+      it.name,
+      (it.note || '').slice(0,120),
+      it.price,
+      `$${sub.toFixed(2)}`
+    ]);
+  });
+
+  doc.autoTable({
+    startY: 38,
+    head: [['Cant.', 'Producto', 'Nota', 'Precio', 'Subtotal']],
+    body: rows,
+    styles: { fontSize: 10, cellPadding: 2 },
+    headStyles: { fillColor: [255,214,10], textColor: 0 },
+    columnStyles: { 0: { halign: 'center', cellWidth: 16 }, 3: { halign: 'right', cellWidth: 24 }, 4: { halign: 'right', cellWidth: 28 } }
+  });
+
+  // Total
+  const endY = doc.lastAutoTable.finalY || 38;
+  doc.setFontSize(12);
+  doc.text(`Total: $${total.toFixed(2)}`, 14, endY + 10);
+
+  // Guardar local + obtener Blob
+  const filename = `${orderId}.pdf`;
+  doc.save(filename);
+  const pdfBlob = doc.output('blob');
+
+  // Hook opcional de subida (devuelve URL pública). Implementa window.uploadOrderPdf si tienes backend:
+  //   window.uploadOrderPdf = async (blob, name) => { ...return 'https://.../pedido.pdf'; }
+  let publicUrl = '';
+  if (typeof window.uploadOrderPdf === 'function') {
+    try { publicUrl = await window.uploadOrderPdf(pdfBlob, filename); }
+    catch { /* si falla, seguimos sin URL pública */ }
+  }
+
+  // Construir texto para WhatsApp
+  const waText = buildWhatsAppText(orderId, fecha, total, publicUrl);
+  const waBase = WHATSAPP_PHONE ? `https://wa.me/${552441215613}?text=` : `https://wa.me/?text=`;
+  const waUrl = waBase + encodeURIComponent(waText);
+
+  // Abrir WhatsApp
+  window.open(waUrl, '_blank');
+}
+
+function buildWhatsAppText(orderId, fecha, total, publicUrl='') {
+  const lines = [];
+  lines.push(`*Confirmación de pedido*`);
+  lines.push(`*Orden:* ${orderId}`);
+  lines.push(`*Fecha:* ${fecha}`);
+  lines.push('');
+  lines.push(`*Productos:*`);
+
+  cart.forEach(it => {
+    const p = parseFloat(it.price.replace(/[^0-9.]/g, '')) || 0;
+    const sub = p * it.qty;
+    const nota = it.note ? ` _(${it.note})_` : '';
+    lines.push(`• ${it.qty} × ${it.name}${nota} — ${it.price} => $${sub.toFixed(2)}`);
+  });
+
+  lines.push('');
+  lines.push(`*Total:* $${total.toFixed(2)}`);
+
+  if (publicUrl) {
+    lines.push('');
+    lines.push(`PDF del pedido: ${publicUrl}`);
+  } else {
+    lines.push('');
+    lines.push(`(El PDF se descargó en tu dispositivo)`);
+  }
+
+  lines.push('');
+  lines.push(`¿Confirmas el envío?`);
+  return lines.join('\n');
+}
 

@@ -7,6 +7,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Shadows+Into+Light&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body class="text-white min-h-screen p-6 pt-24">
 <!-- Header -->
@@ -788,7 +790,7 @@
       <span class="text-2xl">Total: <b id="cart-total">$0</b></span>
       <div class="space-x-2">
         <button onclick="closeCart()" class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md">Cerrar</button>
-        <button class="bg-yellow-400 text-black font-bold px-4 py-2 rounded-md hover:bg-yellow-300">Continuar</button>
+        <button id="checkoutBtn" class="bg-yellow-400 text-black font-bold px-4 py-2 rounded-md hover:bg-yellow-300">Continuar</button>
       </div>
     </div>
   </div>
@@ -806,5 +808,4 @@
 </footer> 
 <script src="script.js"></script>
 </body>
-
 </html>
