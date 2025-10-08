@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==== 🛒 CARRITO (localStorage) ====
 const CART_KEY = 'fc_cart_v1';
 let cart = loadCart();
+window.cart = cart;
 updateCartCount(totalQty());
 
 function loadCart() {
@@ -239,78 +240,40 @@ function renderCart() {
     };
   });
 }
-// === CHECKOUT: PDF + WhatsApp ===
-const WHATSAPP_PHONE = ""; 
-// Opcional: "5218112345678" para abrir chat con ese número. Vacío -> selector de contacto.
+// === CHECKOUT: PDF + WhatsApp (mobile-first) ===
+// PON AQUÍ TU NÚMERO EN FORMATO INTERNACIONAL SIN '+' NI ESPACIOS.
+// Ej. celular MX: "5215512345678" (52 + 1 + 10 dígitos). Vacío -> elige contacto en WhatsApp.
+const WHATSAPP_PHONE = "522441215613";
 
+// Botón continuar
 document.getElementById('checkoutBtn')?.addEventListener('click', onCheckout);
 
-async function onCheckout() {
-  if (!cart || cart.length === 0) { toast('Carrito vacío'); return; }
+// --- Helpers ---
+function isMobile() {
+  return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
 
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  const orderId = 'FC-' + new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14);
-  const now = new Date();
-  const fecha = now.toLocaleString();
-
-  // Encabezado
-  doc.setFontSize(16);
-  doc.text('Fiesta & Café - Pedido', 14, 18);
-  doc.setFontSize(11);
-  doc.text(`Orden: ${orderId}`, 14, 26);
-  doc.text(`Fecha: ${fecha}`, 14, 32);
-
-  // Tabla de items
-  const rows = [];
-  let total = 0;
-  cart.forEach(it => {
-    const p = parseFloat(it.price.replace(/[^0-9.]/g, '')) || 0;
-    const sub = p * it.qty;
-    total += sub;
-    rows.push([
-      String(it.qty),
-      it.name,
-      (it.note || '').slice(0,120),
-      it.price,
-      `$${sub.toFixed(2)}`
-    ]);
-  });
-
-  doc.autoTable({
-    startY: 38,
-    head: [['Cant.', 'Producto', 'Nota', 'Precio', 'Subtotal']],
-    body: rows,
-    styles: { fontSize: 10, cellPadding: 2 },
-    headStyles: { fillColor: [255,214,10], textColor: 0 },
-    columnStyles: { 0: { halign: 'center', cellWidth: 16 }, 3: { halign: 'right', cellWidth: 24 }, 4: { halign: 'right', cellWidth: 28 } }
-  });
-
-  // Total
-  const endY = doc.lastAutoTable.finalY || 38;
-  doc.setFontSize(12);
-  doc.text(`Total: $${total.toFixed(2)}`, 14, endY + 10);
-
-  // Guardar local + obtener Blob
-  const filename = `${orderId}.pdf`;
-  doc.save(filename);
-  const pdfBlob = doc.output('blob');
-
-  // Hook opcional de subida (devuelve URL pública). Implementa window.uploadOrderPdf si tienes backend:
-  //   window.uploadOrderPdf = async (blob, name) => { ...return 'https://.../pedido.pdf'; }
-  let publicUrl = '';
-  if (typeof window.uploadOrderPdf === 'function') {
-    try { publicUrl = await window.uploadOrderPdf(pdfBlob, filename); }
-    catch { /* si falla, seguimos sin URL pública */ }
-  }
-
-  // Construir texto para WhatsApp
-  const waText = buildWhatsAppText(orderId, fecha, total, publicUrl);
-  const waBase = WHATSAPP_PHONE ? `https://wa.me/${552441215613}?text=` : `https://wa.me/?text=`;
+function openWhatsApp(waText) {
+  const waBase = WHATSAPP_PHONE
+    ? `https://wa.me/${WHATSAPP_PHONE}?text=`
+    : `https://wa.me/?text=`;
   const waUrl = waBase + encodeURIComponent(waText);
+  if (isMobile()) {
+    location.href = waUrl;        // móvil: redirección directa
+  } else {
+    window.open(waUrl, '_blank'); // desktop: nueva pestaña
+  }
+}
 
-  // Abrir WhatsApp
-  window.open(waUrl, '_blank');
+async function sharePdfIfPossible(blob, filename, text) {
+  try {
+    const file = new File([blob], filename, { type: 'application/pdf' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ title: 'Pedido', text, files: [file] });
+      return true;
+    }
+  } catch { /* ignore */ }
+  return false;
 }
 
 function buildWhatsAppText(orderId, fecha, total, publicUrl='') {
@@ -322,8 +285,8 @@ function buildWhatsAppText(orderId, fecha, total, publicUrl='') {
   lines.push(`*Productos:*`);
 
   cart.forEach(it => {
-    const p = parseFloat(it.price.replace(/[^0-9.]/g, '')) || 0;
-    const sub = p * it.qty;
+    const p = parseFloat(String(it.price).replace(/[^0-9.]/g, '')) || 0;
+    const sub = p * (it.qty ?? 1);
     const nota = it.note ? ` _(${it.note})_` : '';
     lines.push(`• ${it.qty} × ${it.name}${nota} — ${it.price} => $${sub.toFixed(2)}`);
   });
@@ -344,3 +307,84 @@ function buildWhatsAppText(orderId, fecha, total, publicUrl='') {
   return lines.join('\n');
 }
 
+// --- Flujo principal ---
+async function onCheckout() {
+  if (!Array.isArray(cart) || cart.length === 0) { toast?.('Carrito vacío'); return; }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  const orderId = 'FC-' + new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14);
+  const now = new Date();
+  const fecha = now.toLocaleString();
+
+  // Encabezado
+  doc.setFontSize(16);
+  doc.text('Fiesta & Café - Pedido', 14, 18);
+  doc.setFontSize(11);
+  doc.text(`Orden: ${orderId}`, 14, 26);
+  doc.text(`Fecha: ${fecha}`, 14, 32);
+
+  // Tabla de items
+  const rows = [];
+  let total = 0;
+  cart.forEach(it => {
+    const qty = Number(it.qty ?? 1);
+    const p = parseFloat(String(it.price).replace(/[^0-9.]/g, '')) || 0;
+    const sub = p * qty;
+    total += sub;
+    rows.push([
+      String(qty),
+      it.name,
+      (it.note || '').slice(0,120),
+      it.price,
+      `$${sub.toFixed(2)}`
+    ]);
+  });
+
+  doc.autoTable({
+    startY: 38,
+    head: [['Cant.', 'Producto', 'Nota', 'Precio', 'Subtotal']],
+    body: rows,
+    styles: { fontSize: 10, cellPadding: 2 },
+    headStyles: { fillColor: [255,214,10], textColor: 0 },
+    columnStyles: {
+      0: { halign: 'center', cellWidth: 16 },
+      3: { halign: 'right', cellWidth: 24 },
+      4: { halign: 'right', cellWidth: 28 }
+    }
+  });
+
+  // Total
+  const endY = doc.lastAutoTable?.finalY || 38;
+  doc.setFontSize(12);
+  doc.text(`Total: $${total.toFixed(2)}`, 14, endY + 10);
+
+  // Blob del PDF
+  const filename = `${orderId}.pdf`;
+  const pdfBlob = doc.output('blob');
+
+  // Subida opcional a tu backend (debe devolver URL pública)
+  // Implementa window.uploadOrderPdf = async (blob, name) => 'https://.../pedido.pdf'
+  let publicUrl = '';
+  if (typeof window.uploadOrderPdf === 'function') {
+    try { publicUrl = await window.uploadOrderPdf(pdfBlob, filename); } catch {}
+  }
+
+  const waText = buildWhatsAppText(orderId, fecha, total, publicUrl);
+
+  if (isMobile()) {
+    // 1) Intentar compartir nativo con archivo (Android/Chrome)
+    const shared = await sharePdfIfPossible(pdfBlob, filename, waText);
+    if (!shared) {
+      // 2) Sin compartir archivo: abrir WhatsApp (con link si lo hubo)
+      openWhatsApp(waText);
+      // 3) (Opcional) Ofrecer descarga manual en otro botón
+      // Si igual quieres descargar aquí en móvil, descomenta:
+      // doc.save(filename);
+    }
+  } else {
+    // Desktop: descarga + abrir WhatsApp en nueva pestaña
+    doc.save(filename);
+    openWhatsApp(waText);
+  }
+}
