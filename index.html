@@ -797,6 +797,40 @@
 </div>
 
 </main>
+<!-- MODAL PDF -->
+<div id="pdf-modal" class="fixed inset-0 z-[60] hidden bg-black/80 flex items-center justify-center">
+  <div class="bg-[#111] text-white w-[92%] max-w-3xl rounded-xl border-2 border-yellow-400 shadow-xl">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-white/20">
+      <h3 class="text-2xl font-bold text-yellow-400">Pedido (PDF)</h3>
+      <button id="pdf-close" class="px-3 py-1 rounded-md bg-gray-700 hover:bg-gray-600">Cerrar</button>
+    </div>
+    <div class="p-3">
+      <div class="h-[70vh]">
+        <iframe id="pdf-frame" class="w-full h-full bg-white rounded-md" title="PDF"></iframe>
+      </div>
+      <div class="mt-3 flex justify-end gap-2">
+        <button id="pdf-download" class="bg-yellow-400 text-black font-bold px-4 py-2 rounded-md hover:bg-yellow-300">
+          Descargar PDF
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODAL: Nombre del cliente -->
+<div id="name-modal" class="fixed inset-0 z-[70] hidden bg-black/80 flex items-center justify-center">
+  <div class="bg-[#111] text-white w-[92%] max-w-md rounded-xl border-2 border-yellow-400 shadow-xl">
+    <div class="flex items-center justify-between px-4 py-3 border-b border-white/20">
+      <h3 class="text-xl font-bold text-yellow-400">Nombre del cliente</h3>
+      <button id="name-cancel" class="px-3 py-1 rounded-md bg-gray-700 hover:bg-gray-600">Cancelar</button>
+    </div>
+    <div class="p-4 space-y-3">
+      <input id="customer-name" type="text" class="w-full text-black rounded-md px-3 py-2" placeholder="Ej. Juan Pérez" />
+      <button id="name-continue" class="w-full bg-yellow-400 text-black font-bold px-4 py-2 rounded-md hover:bg-yellow-300">
+        Continuar
+      </button>
+    </div>
+  </div>
+</div>
 <!-- Footer -->
 <footer class="text-center mt-12 text-gray-400 text-sm">
     <!-- Horno -->
@@ -807,5 +841,12 @@
     <p>© 2025 Fiesta & Café - Todos los derechos reservados</p>
 </footer> 
 <script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  window.supabaseClient = supabase.createClient(
+    'https://zqedxkbrdpufcrwlfdvg.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxZWR4a2JyZHB1ZmNyd2xmZHZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MjMzNzcsImV4cCI6MjA3NTQ5OTM3N30.TL1GNccr65fGYQyY1Vsp0HvVAleFfTtmrJhImuZUFxA'
+  );
+</script>
 </body>
 </html>
