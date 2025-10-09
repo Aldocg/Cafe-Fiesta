@@ -1,6 +1,18 @@
 // 🧭 Manejo de menú desplegable
 const menuToggle = document.getElementById("menuToggle");
 const menuLista = document.getElementById("menuList");
+const CUSTOMER_KEY = 'customer_name';
+
+function loadCustomerName(){ try { return localStorage.getItem(CUSTOMER_KEY) || ''; } catch { return ''; } }
+function saveCustomerName(v){ try { localStorage.setItem(CUSTOMER_KEY, v || ''); } catch {} }
+
+function bindCustomerField(){
+  const inp = document.getElementById('cart-customer-name');
+  if (!inp) return;
+  inp.value = loadCustomerName();
+  inp.oninput = e => saveCustomerName((e.target.value || '').trim());
+}
+document.addEventListener('DOMContentLoaded', bindCustomerField);
 
 // Mostrar/ocultar menú al hacer clic en el botón "☰ Ver Menú"
 menuToggle.addEventListener("click", (e) => {
@@ -158,22 +170,35 @@ function addToCartFromModal() {
 
   saveCart();
   closeModal();
-  //toast('Agregado al carrito');
+  toast('Agregado al carrito');
 }
 
 // UI: toast simple
 function toast(msg) {
-  const t = document.createElement('div');
-  t.textContent = msg;
-  t.className = 'fixed top-4 right-4 bg-yellow-400 text-black font-bold px-4 py-2 rounded-lg shadow-lg z-[60]';
-  document.body.appendChild(t);
-  setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity .3s'; }, 1200);
-  setTimeout(() => t.remove(), 1600);
+  // Overlay centrado
+  const wrap = document.createElement('div');
+  wrap.className = 'fixed inset-0 z-[90] flex items-center justify-center';
+  // Fondo opcional semitransparente (si lo quieres, descomenta):
+  // wrap.className += ' bg-black/40';
+
+  const box = document.createElement('div');
+  box.textContent = msg;
+  box.className = 'bg-yellow-400 text-black font-bold px-6 py-4 rounded-xl shadow-2xl text-center transform transition-all duration-200 scale-100 opacity-100';
+
+  wrap.appendChild(box);
+  document.body.appendChild(wrap);
+
+  // Auto-cierre suave
+  setTimeout(() => {
+    box.classList.add('opacity-0');
+    box.classList.add('scale-95');
+  }, 1200);
+  setTimeout(() => wrap.remove(), 1600);
 }
 
 // Abrir/cerrar modal carrito
 document.getElementById('cartButton')?.addEventListener('click', openCart);
-function openCart(){ renderCart(); document.getElementById('cart-modal').classList.remove('hidden'); }
+function openCart(){ renderCart();bindCustomerField(); document.getElementById('cart-modal').classList.remove('hidden'); }
 function closeCart(){ document.getElementById('cart-modal').classList.add('hidden'); }
 
 // Render de items
@@ -220,7 +245,7 @@ function renderCart() {
     list.appendChild(li);
   });
 
-  totalEl.textContent = `$${total}`;
+  totalEl.textContent = `$${total.toFixed(2)}`;
   // listeners de qty / delete / note
   list.querySelectorAll('button[data-act]').forEach(btn=>{
     const i = +btn.dataset.idx;
@@ -246,29 +271,6 @@ function downloadBlob(blob, filename){
   a.download = filename;
   document.body.appendChild(a); a.click();
   setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 0);
-}
-
-function showPdfModalFromBlob(blob, filename){
-  const modal = document.getElementById('pdf-modal');
-  const frame = document.getElementById('pdf-frame');
-  const closeBtn = document.getElementById('pdf-close');
-  const downloadBtn = document.getElementById('pdf-download');
-
-  const url = URL.createObjectURL(blob);
-  frame.src = url;
-  modal.classList.remove('hidden');
-
-  const onClose = () => {
-    modal.classList.add('hidden');
-    frame.src = 'about:blank';
-    URL.revokeObjectURL(url);
-    closeBtn.removeEventListener('click', onClose);
-    downloadBtn.removeEventListener('click', onDownload);
-  };
-  const onDownload = () => downloadBlob(blob, filename);
-
-  closeBtn.addEventListener('click', onClose);
-  downloadBtn.addEventListener('click', onDownload);
 }
 // === SUPABASE: guardar pedido y renglones ===
 // usa el cliente global: window.supabaseClient
@@ -306,135 +308,47 @@ async function saveOrderToSupabase({ order, items }) {
   return orderRow.id;
 }
 
-// === CHECKOUT: Solo TEXTO por Telegram + PDF en modal ===
-//document.getElementById('checkoutBtn')?.addEventListener('click', onCheckout);
-document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-  if (!Array.isArray(cart) || cart.length === 0) { toast?.('Carrito vacío'); return; }
-  openNameModal();
-});
-
-async function onCheckout() {
-  if (!Array.isArray(cart) || cart.length === 0) { toast?.('Carrito vacío'); return; }
-
-  // === Calcula totales desde tu cart ===
-  const orderIdCode = 'FC-' + new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14);
-  const now = new Date();
-  const fecha = now.toLocaleString();
-
-  let subtotal = 0;
-  cart.forEach(it => {
-    const p = parseFloat(String(it.price).replace(/[^0-9.]/g,'')) || 0;
-    subtotal += p * (it.qty ?? 1);
-  });
-  const discount = 0, tax = 0, shipping = 0; // ajusta si los manejas
-  const total = subtotal - discount + tax + shipping;
-
-  // === Genera PDF como ya lo tienes (doc, autoTable, etc.) ===
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  doc.setFontSize(16);
-  doc.text('Fiesta & Café - Pedido', 14, 18);
-  doc.setFontSize(11);
-  doc.text(`Orden: ${orderIdCode}`, 14, 26);
-  doc.text(`Fecha: ${fecha}`, 14, 32);
-
-  const rows = [];
-  cart.forEach(it => {
-    const qty = Number(it.qty ?? 1);
-    const p = parseFloat(String(it.price).replace(/[^0-9.]/g,'')) || 0;
-    const sub = p * qty;
-    rows.push([ String(qty), it.name, (it.note || '').slice(0,120), it.price, `$${sub.toFixed(2)}` ]);
-  });
-  doc.autoTable({
-    startY: 38,
-    head: [['Cant.', 'Producto', 'Nota', 'Precio', 'Subtotal']],
-    body: rows,
-    styles: { fontSize: 10, cellPadding: 2 },
-    headStyles: { fillColor: [255,214,10], textColor: 0 },
-    columnStyles: { 0:{halign:'center',cellWidth:16}, 3:{halign:'right',cellWidth:24}, 4:{halign:'right',cellWidth:28} }
-  });
-  const endY = doc.lastAutoTable?.finalY || 38;
-  doc.setFontSize(12);
-  doc.text(`Total: $${total.toFixed(2)}`, 14, endY + 10);
-
-  const filename = `${orderIdCode}.pdf`;
-  const pdfBlob = doc.output('blob');
-
-  // === Guarda en Supabase (tablas Pedidos / Pedidos_detalle) ===
-  try {
-    const orderPayload = {
-      order_code: orderIdCode,
-      status: 'pending',
-      customer_name: '',          // opcional
-      customer_telegram: false,   // puedes ignorarlo; queda en false/null
-      notes: '',
-      subtotal,
-      discount,
-      tax,
-      total,
-      payment_method: null,
-      payment_status: 'unpaid',
-      pdf_url: null,              // si luego lo subes, actualizas
-      source: 'web'
-    };
-
-    await saveOrderToSupabase({
-      order: orderPayload,
-      items: cart
-    });
-
-    toast?.('Pedido guardado');
-    // Muestra el PDF en tu modal con botón de descarga:
-    + closeCart?.();                   // cierra el modal del carrito (z-50)
-    showPdfModalFromBlob?.(pdfBlob, filename);
-
-  } catch (err) {
-    console.error(err);
-    toast?.('Error al guardar pedido');
-  }
-}
 function openNameModal() {
   const m = document.getElementById('name-modal');
-  document.getElementById('customer-name').value = '';
+  const input = document.getElementById('customer-name');
+  const btn = document.getElementById('name-continue');
+  const newBtn = btn.cloneNode(true);               // <- limpia listeners
+  btn.parentNode.replaceChild(newBtn, btn);
+
+  input.value = '';
   m.classList.remove('hidden');
-  setTimeout(()=> document.getElementById('customer-name').focus(), 0);
+  setTimeout(()=> input.focus(), 0);
 }
+
 function closeNameModal() {
   document.getElementById('name-modal').classList.add('hidden');
 }
 document.getElementById('name-cancel')?.addEventListener('click', closeNameModal);
-document.getElementById('name-continue')?.addEventListener('click', async () => {
-  const v = (document.getElementById('customer-name').value || '').trim();
-  if (!v) { toast?.('Ingresa el nombre'); return; }
-  closeNameModal();
-  await processOrder(v); // sigue el flujo normal con el nombre
-});
-async function processOrder(customerName) {
-  // 1) Totales y PDF (igual que ya lo haces)
+
+let lastPdf = null; // { blob, filename, orderCode, total }
+
+function buildPdfFromCart() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
   const orderCode = 'FC-' + new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14);
   const fecha = new Date().toLocaleString();
 
-  let subtotal = 0;
-  cart.forEach(it => {
-    const p = parseFloat(String(it.price).replace(/[^0-9.]/g,'')) || 0;
-    subtotal += p * (it.qty ?? 1);
-  });
-  const discount = 0, tax = 0, shipping = 0;
-  const total = subtotal - discount + tax + shipping;
-
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+  // encabezado
   doc.setFontSize(16); doc.text('Fiesta & Café - Pedido', 14, 18);
   doc.setFontSize(11); doc.text(`Orden: ${orderCode}`, 14, 26);
   doc.text(`Fecha: ${fecha}`, 14, 32);
 
+  // tabla
   const rows = [];
+  let subtotal = 0;
   cart.forEach(it => {
     const qty = Number(it.qty ?? 1);
     const p = parseFloat(String(it.price).replace(/[^0-9.]/g,'')) || 0;
     const sub = p * qty;
+    subtotal += sub;
     rows.push([ String(qty), it.name, (it.note || '').slice(0,120), it.price, `$${sub.toFixed(2)}` ]);
   });
+
   doc.autoTable({
     startY: 38,
     head: [['Cant.', 'Producto', 'Nota', 'Precio', 'Subtotal']],
@@ -443,42 +357,78 @@ async function processOrder(customerName) {
     headStyles: { fillColor: [255,214,10], textColor: 0 },
     columnStyles: { 0:{halign:'center',cellWidth:16}, 3:{halign:'right',cellWidth:24}, 4:{halign:'right',cellWidth:28} }
   });
+
   const endY = doc.lastAutoTable?.finalY || 38;
-  doc.setFontSize(12); doc.text(`Total: $${total.toFixed(2)}`, 14, endY + 10);
+  doc.setFontSize(12);
+  doc.text(`Total: $${subtotal.toFixed(2)}`, 14, endY + 10);
 
   const filename = `${orderCode}.pdf`;
-  const pdfBlob = doc.output('blob');
+  const blob = doc.output('blob');
 
-  // 2) Guardar en Supabase con customer_name
-  try {
-    const orderPayload = {
-      order_code: orderCode,
-      status: 'pending',
-      customer_name: customerName,   // <<<<<<<< AQUI
-      customer_telegram: false,
-      notes: '',
-      subtotal, discount, tax, total,
-      payment_method: null,
-      payment_status: 'unpaid',
-      pdf_url: null,
-      source: 'web'
+  lastPdf = { blob, filename, orderCode, total: subtotal };
+  return lastPdf;
+}
+// Botón Descargar PDF (solo si el usuario lo pide)
+document.getElementById('downloadPdfBtn')?.addEventListener('click', () => {
+  if (!Array.isArray(cart) || cart.length === 0) { toast?.('Carrito vacío'); return; }
+  const pdf = buildPdfFromCart();
+  downloadBlob(pdf.blob, pdf.filename);
+});
+
+// Botón Enviar (valida nombre; si falta, abre modal de nombre y NO envía)
+document.getElementById('checkoutBtn')?.addEventListener('click', async () => {
+  if (!Array.isArray(cart) || cart.length === 0) { toast?.('Carrito vacío'); return; }
+
+  const nameInput = document.getElementById('cart-customer-name');
+  const nameVal = (nameInput?.value || '').trim();
+  
+  if (!nameVal) {
+    // falta nombre: levantamos modal de nombre y al aceptar llenamos el campo del carrito
+    openNameModal();
+    const handler = async () => {
+      const v = (document.getElementById('customer-name').value || '').trim();
+      if (!v) { toast?.('Ingresa el nombre'); return; }
+      const nameInput = document.getElementById('cart-customer-name');
+      nameInput.value = v;           // llenar campo del carrito
+      saveCustomerName(v);
+      closeNameModal();
+      toast?.('Nombre agregado');    // no enviamos aún; usuario vuelve a dar "Enviar"
     };
+    document.getElementById('name-continue')?.addEventListener('click', handler,{ once: true });
+    return; // cancelar envío
+  }
+
+  // Sí hay nombre: enviar a Supabase
+  await onCheckout(nameVal);
+});
+async function onCheckout(customerName) {
+  // construir PDF (para poder descargar luego si quieren)
+  const pdf = buildPdfFromCart();
+
+  // payload de orden
+  const orderPayload = {
+    order_code: pdf.orderCode,
+    status: 'pending',
+    customer_name: customerName,
+    customer_telegram: false,
+    notes: '',
+    subtotal: pdf.total,
+    discount: 0,
+    tax: 0,
+    total: pdf.total,
+    payment_method: null,
+    payment_status: 'unpaid',
+    pdf_url: null,
+    source: 'web'
+  };
+
+  try {
     await saveOrderToSupabase({ order: orderPayload, items: cart });
-    toast?.('Pedido guardado');
-
-    // 3) Mostrar PDF en modal
-    showPdfModalFromBlob(pdfBlob, filename);
-
-    // 4) Cuando cierren el PDF => cerrar carrito y alertar
-    const pdfClose = document.getElementById('pdf-close');
-    pdfClose?.addEventListener('click', () => {
-      closeCart?.();
-      alert('Pedido enviado');
-    }, { once: true });
-
+    toast('Pedido enviado');
+    closeCart();
   } catch (err) {
     console.error(err);
-    toast?.('Error al guardar pedido');
+    toast('Error al guardar pedido');
   }
 }
 
