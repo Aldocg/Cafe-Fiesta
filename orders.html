@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pedidos — Fiesta & Café</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="orders.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body class="bg-[#111] text-white min-h-screen">
+  <header class="p-4 flex items-center justify-between border-b border-white/10">
+    <h1 class="text-2xl font-bold text-yellow-400">Pedidos</h1>
+    <span id="statusDot" class="inline-flex items-center gap-2 text-sm text-gray-300">
+      <span class="w-2 h-2 rounded-full bg-red-500" id="rtDot"></span> tiempo real
+    </span>
+  </header>
+
+  <main class="p-4">
+    <ul id="ordersList" class="space-y-3"></ul>
+  </main>
+
+  <!-- Modal Pedido -->
+  <div id="orderModal" class="fixed inset-0 z-50 hidden bg-black/80 items-center justify-center p-4">
+    <div class="bg-[#111] w-[92%] max-w-2xl rounded-xl border-2 border-yellow-400 shadow-xl">
+      <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+        <h3 id="modalTitle" class="text-xl font-bold text-yellow-400">Pedido</h3>
+        <button id="btnClose" class="px-3 py-1 rounded-md bg-gray-700 hover:bg-gray-600">Cerrar</button>
+      </div>
+      <div class="p-4 space-y-3">
+        <p id="modalSub" class="text-sm text-gray-300"></p>
+        <div class="flex justify-end gap-2">
+          
+          <button id="btnDownloadPdf" class="bg-yellow-400 text-black font-bold px-4 py-2 rounded-md hover:bg-yellow-300">
+            Descargar PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configura tus credenciales:
+    window.SUPABASE_URL = 'https://zqedxkbrdpufcrwlfdvg.supabase.co';
+    window.SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxZWR4a2JyZHB1ZmNyd2xmZHZnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MjMzNzcsImV4cCI6MjA3NTQ5OTM3N30.TL1GNccr65fGYQyY1Vsp0HvVAleFfTtmrJhImuZUFxA';
+  </script>
+  <script src="orders.js"></script>
+</body>
+</html>
