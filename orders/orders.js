@@ -64,7 +64,7 @@ function renderOrders(rows){
     btnOpen.onclick = ()=> openOrder(r.id, r.order_code);   // no se llamará si está disabled
 
     const btnStop = document.createElement('button');
-    btnStop.className = 'px-3 py-1 rounded-md ' +
+    btnStop.className = 'px-3 py-1 rounded-md bg-amber-500 text-black font-bold hover:bg-amber-400 ' +
       (st==='open' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-600 text-gray-300 cursor-not-allowed');
     btnStop.textContent = 'Stop';
     btnStop.disabled = st!=='open';
