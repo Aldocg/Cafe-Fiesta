@@ -164,27 +164,6 @@ async function openOrder(id, code){
   modal.classList.remove('hidden'); modal.classList.add('flex');
 }
 
-// --- Realtime: alerta cuando llegue un nuevo pedido ---
-function bindRealtime(){
-  const dot = document.getElementById('rtDot');
-  try {
-    const ch = supa.channel('rt-pedidos')
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'Pedidos' }, async (payload)=>{
-        dot.classList.replace('bg-red-500','bg-green-500');
-        const code = payload.new.order_code || payload.new.id;
-        toast(`Nuevo pedido: ${code}`);
-        await showNotify('Nuevo pedido', `Orden ${code} creada`);
-        // refresca lista
-        const rows = await fetchOrders(); renderOrders(rows);
-        setTimeout(()=> dot.classList.replace('bg-green-500','bg-red-500'), 1200);
-      })
-      .subscribe((status)=>{
-        if (status === 'SUBSCRIBED') dot.classList.replace('bg-red-500','bg-green-500');
-      });
-    window.__rt = ch;
-  } catch(e){ console.error(e); }
-}
-
 // --- Init ---
 
 // ===== timers =====
@@ -263,66 +242,94 @@ async function ensureNotifyPermission(){
   if (!('Notification' in window)) return false;
   if (Notification.permission === 'granted') return true;
   if (Notification.permission === 'denied') return false;
-  const res = await Notification.requestPermission();
-  return res === 'granted';
-}
-async function showNotify(title, body){
-  try{
-    // usa el SW si existe para notificaciones más confiables
-    const reg = await navigator.serviceWorker.getRegistration();
-    if (reg) return reg.showNotification(title, { body, icon: '/favicon.ico', badge: '/favicon.ico' });
-    // fallback directo
-    if ('Notification' in window && Notification.permission === 'granted'){
-      new Notification(title, { body });
-    }
-  }catch(e){ console.error(e); }
-}
-// 1) Evita doble init: elimina cualquier otro IIFE init y deja SOLO ESTE al final del archivo
-let rtChannel = null;
-let rtReady = false;
-
-async function ensureNotifyPermission(){
-  if (!('Notification' in window)) return false;
-  if (Notification.permission === 'granted') return true;
-  if (Notification.permission === 'denied') return false;
   // algunos navegadores solo otorgan 'granted' tras gesto del usuario → botón dedicado
   return false;
 }
 async function showNotify(title, body){
   try{
+    if (!('Notification' in window)) return;                // no soportado
+    if (Notification.permission !== 'granted') return;      // sin permiso, salir
+
     const reg = await navigator.serviceWorker.getRegistration();
-    if (reg) return reg.showNotification(title, { body, icon: '/favicon.ico', badge: '/favicon.ico' });
-    if ('Notification' in window && Notification.permission === 'granted'){
-      new Notification(title, { body });
+    const opts = { body, icon: './favicon.ico', badge: './favicon.ico' };
+    if (reg && 'showNotification' in reg) {
+      await reg.showNotification(title, opts);
+    } else {
+      // fallback (página en foco)
+      new Notification(title, opts);
     }
-  }catch(e){ console.error(e); }
+  }catch(e){
+    console.warn('showNotify failed', e); // nunca lances error
+  }
 }
 
 // 2) Suscripción robusta con reintento
-async function bindRealtime(){
-  const dot = document.getElementById('rtDot');
-  if (rtChannel) { try { await supa.removeChannel(rtChannel); } catch(e){} rtChannel = null; }
+// Realtime robusto: refresh primero, luego notifica; reintentos con backoff; sin dobles suscripciones
+let rtChannel = null;
+let rtReady = false;
+let rtRetry = 0;
 
-  rtChannel = supa.channel('rt-pedidos', { config: { broadcast: { ack: true }}})
+async function bindRealtime(force = false){
+  const dot = document.getElementById('rtDot');
+
+  // Limpia suscripción previa
+  if (rtChannel) {
+    try { await supa.removeChannel(rtChannel); } catch(_) {}
+    rtChannel = null;
+  }
+
+  // Crea canal y escucha INSERT en public.Pedidos
+  rtChannel = supa
+    .channel('rt-pedidos', { config: { broadcast: { ack: true } } })
     .on('postgres_changes',
       { event: 'INSERT', schema: 'public', table: 'Pedidos' },
       async (payload)=>{
-        dot.classList.replace('bg-red-500','bg-green-500');
-        const code = payload.new.order_code || payload.new.id;
+        // Señal visual
+        if (dot) dot.classList.replace('bg-red-500','bg-green-500');
+
+        const code = payload?.new?.order_code || payload?.new?.id || '—';
         toast(`Nuevo pedido: ${code}`);
-        await showNotify('Nuevo pedido', `Orden ${code} creada`);
-        const rows = await fetchOrders(); renderOrders(rows);
-        setTimeout(()=> dot.classList.replace('bg-green-500','bg-red-500'), 1200);
+
+        // 1) REFRESH PRIMERO (no bloquear si falla)
+        try {
+          const rows = await fetchOrders();
+          renderOrders(rows);
+        } catch (e) {
+          console.error('refresh error', e);
+        }
+
+        // 2) NOTIFICAR DESPUÉS (con guardas internas en showNotify)
+        try {
+          await showNotify('Nuevo pedido', `Orden ${code} creada`);
+        } catch (e) {
+          console.warn('notify error', e);
+        }
+
+        // Restablece el punto rojo
+        if (dot) setTimeout(()=> dot.classList.replace('bg-green-500','bg-red-500'), 1200);
       }
     )
     .subscribe((status)=>{
       rtReady = (status === 'SUBSCRIBED');
-      if (rtReady) dot.classList.replace('bg-red-500','bg-green-500');
+      if (rtReady) {
+        rtRetry = 0;
+        if (dot) dot.classList.replace('bg-red-500','bg-green-500');
+      }
     });
 
-  // reintento si no conecta en 3s
-  setTimeout(()=>{ if (!rtReady) bindRealtime(); }, 3000);
+  // Reintento exponencial si no conecta
+  const delay = Math.min(10000, 1000 * Math.pow(2, rtRetry || 0)); // 1s → 2s → 4s → … máx 10s
+  setTimeout(()=>{
+    if (!rtReady) {
+      rtRetry++;
+      bindRealtime(true);
+    }
+  }, delay);
+
+  // Guarda referencia global para posibles limpiezas
+  window.__rt = rtChannel;
 }
+
 
 // 3) Fallback de polling suave (por si Realtime no está habilitado en Supabase)
 let pollId=null;
@@ -332,15 +339,6 @@ function startPoll(){
     const rows = await fetchOrders(); renderOrders(rows);
   }, 15000); // 15s
 }
-
-// 4) Botón para pedir permiso de notificaciones (gesto del usuario)
-document.addEventListener('click', async (e)=>{
-  if (e.target && e.target.id === 'btnEnablePush'){
-    const res = await Notification.requestPermission();
-    toast(res === 'granted' ? 'Notificaciones activadas' : 'Permiso denegado');
-  }
-});
-
 // 5) ÚNICO init
 (async function init(){
   const rows = await fetchOrders();
