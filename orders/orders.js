@@ -188,24 +188,25 @@ function stopTimerFor(orderId){
   const t = timers.get(orderId);
   if (t){ clearInterval(t.intId); timers.delete(orderId); }
 }
-document.getElementById('btnStopTimer').onclick = async () => {
-  if (!window.__currentPdf) return;
-  const { order } = window.__currentPdf;
-  // calcula segundos actuales (timer base + transcurrido)
-  const li = document.querySelector(`[data-order-id="${order.id}"] .timer`);
-  const text = (li?.textContent || '00:00:00');
-  const [h,m,s] = text.split(':').map(Number);
-  const secs = h*3600 + m*60 + s;
+const btnStopTimer = document.getElementById('btnStopTimer');
+  if (btnStopTimer){
+    btnStopTimer.onclick = async () => {
+      if (!window.__currentPdf) return;
+      const { order } = window.__currentPdf;
+      const li = document.querySelector(`[data-order-id="${order.id}"] .timer`);
+      const text = (li?.textContent || '00:00:00');
+      const [h,m,s] = text.split(':').map(Number);
+      const secs = h*3600 + m*60 + s;
 
-  // guarda y cambia estado (ej. 'paused' o 'done'; usa el que prefieras)
-  await supa.from('Pedidos').update({
-    time_spent_seconds: secs,
-    status: 'open' // o 'paused' si quieres marcarlo; tú decides
-  }).eq('id', order.id);
+      await supa.from('Pedidos').update({
+        time_spent_seconds: secs,
+        status: 'open'
+      }).eq('id', order.id);
 
-  stopTimerFor(order.id);
-  toast('Tiempo detenido');
-};
+      stopTimerFor(order.id);
+      toast('Tiempo detenido');
+    };
+  }
 async function stopAndPersist(orderId){
   const row = document.querySelector(`[data-order-id="${orderId}"]`);
   const tEl = row?.querySelector('.timer');
