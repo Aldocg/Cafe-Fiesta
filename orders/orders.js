@@ -186,11 +186,7 @@ function bindRealtime(){
 }
 
 // --- Init ---
-(async function init(){
-  const rows = await fetchOrders();
-  renderOrders(rows);
-  bindRealtime();
-})();
+
 // ===== timers =====
 const timers = new Map(); // id -> { intId, base, openedAt, el }
 function fmt(s){ const h=Math.floor(s/3600), m=Math.floor((s%3600)/60), ss=s%60;
@@ -281,10 +277,81 @@ async function showNotify(title, body){
     }
   }catch(e){ console.error(e); }
 }
-// Llama a ensureNotifyPermission() al iniciar
+// 1) Evita doble init: elimina cualquier otro IIFE init y deja SOLO ESTE al final del archivo
+let rtChannel = null;
+let rtReady = false;
+
+async function ensureNotifyPermission(){
+  if (!('Notification' in window)) return false;
+  if (Notification.permission === 'granted') return true;
+  if (Notification.permission === 'denied') return false;
+  // algunos navegadores solo otorgan 'granted' tras gesto del usuario → botón dedicado
+  return false;
+}
+async function showNotify(title, body){
+  try{
+    const reg = await navigator.serviceWorker.getRegistration();
+    if (reg) return reg.showNotification(title, { body, icon: '/favicon.ico', badge: '/favicon.ico' });
+    if ('Notification' in window && Notification.permission === 'granted'){
+      new Notification(title, { body });
+    }
+  }catch(e){ console.error(e); }
+}
+
+// 2) Suscripción robusta con reintento
+async function bindRealtime(){
+  const dot = document.getElementById('rtDot');
+  if (rtChannel) { try { await supa.removeChannel(rtChannel); } catch(e){} rtChannel = null; }
+
+  rtChannel = supa.channel('rt-pedidos', { config: { broadcast: { ack: true }}})
+    .on('postgres_changes',
+      { event: 'INSERT', schema: 'public', table: 'Pedidos' },
+      async (payload)=>{
+        dot.classList.replace('bg-red-500','bg-green-500');
+        const code = payload.new.order_code || payload.new.id;
+        toast(`Nuevo pedido: ${code}`);
+        await showNotify('Nuevo pedido', `Orden ${code} creada`);
+        const rows = await fetchOrders(); renderOrders(rows);
+        setTimeout(()=> dot.classList.replace('bg-green-500','bg-red-500'), 1200);
+      }
+    )
+    .subscribe((status)=>{
+      rtReady = (status === 'SUBSCRIBED');
+      if (rtReady) dot.classList.replace('bg-red-500','bg-green-500');
+    });
+
+  // reintento si no conecta en 3s
+  setTimeout(()=>{ if (!rtReady) bindRealtime(); }, 3000);
+}
+
+// 3) Fallback de polling suave (por si Realtime no está habilitado en Supabase)
+let pollId=null;
+function startPoll(){
+  if (pollId) return;
+  pollId = setInterval(async ()=> {
+    const rows = await fetchOrders(); renderOrders(rows);
+  }, 15000); // 15s
+}
+
+// 4) Botón para pedir permiso de notificaciones (gesto del usuario)
+document.addEventListener('click', async (e)=>{
+  if (e.target && e.target.id === 'btnEnablePush'){
+    const res = await Notification.requestPermission();
+    toast(res === 'granted' ? 'Notificaciones activadas' : 'Permiso denegado');
+  }
+});
+
+// 5) ÚNICO init
 (async function init(){
   const rows = await fetchOrders();
   renderOrders(rows);
-  await ensureNotifyPermission();
+
+  // intenta Realtime y activa fallback
   bindRealtime();
+  startPoll();
+
+  // si ya estaba concedido, no requiere botón
+  const granted = await ensureNotifyPermission();
+  if (granted) toast('Notificaciones activas');
 })();
+
