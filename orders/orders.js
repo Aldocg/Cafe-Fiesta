@@ -171,7 +171,9 @@ function bindRealtime(){
     const ch = supa.channel('rt-pedidos')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'Pedidos' }, async (payload)=>{
         dot.classList.replace('bg-red-500','bg-green-500');
-        toast(`Nuevo pedido: ${payload.new.order_code || payload.new.id}`);
+        const code = payload.new.order_code || payload.new.id;
+        toast(`Nuevo pedido: ${code}`);
+        await showNotify('Nuevo pedido', `Orden ${code} creada`);
         // refresca lista
         const rows = await fetchOrders(); renderOrders(rows);
         setTimeout(()=> dot.classList.replace('bg-green-500','bg-red-500'), 1200);
@@ -261,4 +263,28 @@ async function downloadPdfFor(orderId){
   const doc = await buildPdf(orderRow, items);
   doc.save(`${orderRow.order_code}.pdf`);
 }
-
+async function ensureNotifyPermission(){
+  if (!('Notification' in window)) return false;
+  if (Notification.permission === 'granted') return true;
+  if (Notification.permission === 'denied') return false;
+  const res = await Notification.requestPermission();
+  return res === 'granted';
+}
+async function showNotify(title, body){
+  try{
+    // usa el SW si existe para notificaciones más confiables
+    const reg = await navigator.serviceWorker.getRegistration();
+    if (reg) return reg.showNotification(title, { body, icon: '/favicon.ico', badge: '/favicon.ico' });
+    // fallback directo
+    if ('Notification' in window && Notification.permission === 'granted'){
+      new Notification(title, { body });
+    }
+  }catch(e){ console.error(e); }
+}
+// Llama a ensureNotifyPermission() al iniciar
+(async function init(){
+  const rows = await fetchOrders();
+  renderOrders(rows);
+  await ensureNotifyPermission();
+  bindRealtime();
+})();
