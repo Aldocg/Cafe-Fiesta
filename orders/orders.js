@@ -35,11 +35,14 @@ function renderOrders(rows){
   ordersList.innerHTML = '';
   rows.forEach(r=>{
     const st = (r.status||'').toLowerCase();
+
     const li = document.createElement('li');
-    li.className='item flex items-center justify-between gap-3';
+    li.className='item p-3 rounded-2xl border border-white/10 bg-black/20 flex flex-col sm:flex-row gap-3 sm:items-center';
     li.dataset.orderId = r.id;
 
+    // crea left ANTES de usarlo
     const left = document.createElement('div');
+    left.className = 'min-w-0 flex-1'; // permite romper líneas sin empujar botones
     left.innerHTML = `
       <div class="flex items-center gap-2">
         <span class="text-lg font-bold">${r.order_code}</span>
@@ -51,27 +54,31 @@ function renderOrders(rows){
         ${new Date(r.created_at).toLocaleString()} · ${r.customer_name||'—'} · $${Number(r.total||0).toFixed(2)}
       </div>
     `;
+    const titleRow = left.querySelector('.flex.items-center.gap-2');
+    if (titleRow) titleRow.className += ' min-w-0';
+    const timer = left.querySelector('.timer');
+    if (timer) timer.className += ' truncate';
 
-    // derecha: Open, Stop, Descargar PDF (en ese orden)
+    // derecha: Open, Stop, PDF
     const right = document.createElement('div');
-    right.className = 'flex items-center gap-2';
+    right.className = 'actions flex flex-wrap gap-2 w-full sm:w-auto sm:ml-auto justify-between sm:justify-end';
 
     const btnOpen = document.createElement('button');
-    btnOpen.className = 'px-3 py-1 rounded-md font-bold ' +
+    btnOpen.className = 'min-w-[88px] flex-1 sm:flex-none px-3 py-1 rounded-md font-bold ' +
       (st==='pending' ? 'bg-yellow-400 text-black hover:bg-yellow-300' : 'bg-gray-600 text-gray-300 cursor-not-allowed');
     btnOpen.textContent = 'Open';
     btnOpen.disabled = st!=='pending';
-    btnOpen.onclick = ()=> openOrder(r.id, r.order_code);   // no se llamará si está disabled
+    btnOpen.onclick = ()=> openOrder(r.id, r.order_code);
 
     const btnStop = document.createElement('button');
-    btnStop.className = 'px-3 py-1 rounded-md bg-amber-500 text-black font-bold hover:bg-amber-400 ' +
-      (st==='open' ? 'bg-gray-700 hover:bg-gray-600' : 'bg-gray-600 text-gray-300 cursor-not-allowed');
+    btnStop.className = 'min-w-[88px] flex-1 sm:flex-none px-3 py-1 rounded-md font-bold ' +
+      (st==='open' ? 'bg-amber-500 text-black hover:bg-amber-400' : 'bg-gray-600 text-gray-300 cursor-not-allowed');
     btnStop.textContent = 'Stop';
     btnStop.disabled = st!=='open';
     btnStop.onclick = ()=> stopAndPersist(r.id);
 
     const btnPDF = document.createElement('button');
-    btnPDF.className = 'px-3 py-1 rounded-md bg-amber-500 text-black font-bold hover:bg-amber-400';
+    btnPDF.className = 'min-w-[72px] flex-1 sm:flex-none px-3 py-1 rounded-md font-bold bg-amber-500 text-black hover:bg-amber-400';
     btnPDF.textContent = 'PDF';
     btnPDF.onclick = ()=> downloadPdfFor(r.id);
 
@@ -92,6 +99,7 @@ function renderOrders(rows){
     }
   });
 }
+
 
 
 // --- PDF builder (usa detalles) ---
