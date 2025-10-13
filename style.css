@@ -62,25 +62,21 @@
     animation: goldFlash 2.5s infinite ease-in-out;
     transition: all 0.3s ease;
   }
-  ul li span.font-bold:last-child {
-  font-size: 1.75rem; /* 28px aprox */
-}
-
-@media (min-width: 640px) { /* sm */
-  ul li span.font-bold:last-child {
-    font-size: 2.25rem; /* 36px */
-  }
-}
+  
 
 @media (min-width: 1024px) { /* lg */
-  ul li span.font-bold:last-child {
-    font-size: 3rem; /* 48px */
-  }
+  
 }
-ul li span.font-bold:last-child {
+@media (min-width: 1024px) { /* lg */
+ 
+}
+/* Precio en el contenedor derecho */
+
+.precio {
   color: #FFD700;
-  text-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+  text-shadow: 0 0 6px rgba(255,215,0,.6);
 }
+.no-glow { text-shadow: none !important; }
 /* 💙 Azul metálico brillante permanente */
 .texto-descripcion {
   color: #81D4FA; /* azul metálico brillante */
