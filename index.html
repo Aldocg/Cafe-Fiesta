@@ -781,22 +781,7 @@
         </li>
         
       </ul>
-    </li>
-
-    <!-- Tisanas -->
-    <li class="flex flex-col">
-      <div class="flex justify-between items-start">
-        <span class="font-bold block">Tisanas</span>
-        <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$39</span>
-      </div>
-      <ul class="mt-4 ml-6 text-base sm:text-lg lg:text-xl italic texto-descripcion leading-snug list-disc list-inside">
-        <li>Frutos Rojos</li>
-        <li>Pétalos de Rosa</li>
-        <li>Kiwi-Maracuyá</li>
-        <li>Durazno-Piña-Mango</li>
-      </ul>
-    </li>
-
+    </li>   
   </ul>
 </section>
 <!-- BEBIDAS FRÍAS -->
@@ -806,41 +791,120 @@
   </div>
 
   <ul id="frias" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk space-y-8 overflow-x-auto whitespace-nowrap">
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Cacao</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$46</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Cacao</span>
+      </div>
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$46</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Bebidas Frías', 'Cacao', '$46','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Malteadas</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$35</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Malteadas</span>
+      </div>
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$35</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Bebidas Frías', 'Malteadas', '$35','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Limonada</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$32</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Limonada</span>
+      </div>
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$32</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Bebidas Frías', 'Limonada', '$32','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Naranjada</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$32</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Naranjada</span>
+      </div>
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$32</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Bebidas Frías', 'Naranjada', '$32','')"
+        title="Agregar"
+        >+</button>
     </li>
-
     <!-- Tisana Fría -->
     <li class="flex flex-col border-b-2 border-dashed border-white/40 pb-4">
       <div class="flex justify-between items-start">
         <span class="font-bold block">Tisana Fría</span>
-        <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+        <span class="font-bold text-xl sm:text-2xl lg:text-4xl"></span>
       </div>
       <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
         Infusión con un toque de hielos al gusto.
       </p>
       <ul class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-        <li>Frutos Rojos</li>
-        <li>Kiwi-Maracuyá</li>
-        <li>Durazno-Piña</li>
-        <li>Pétalos de Rosa</li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Frutos Rojos</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Tisana Fría', '$42','Sabor Frutos Rojos')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Kiwi-Maracuyá</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Tisana Fría', '$42','Kiwi-Maracuyá')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Durazno-Piña</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Tisana Fría', '$42','Durazno-Piña')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Pétalos de Rosa</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Tisana Fría', '$42','Pétalos de Rosa')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
       </ul>
     </li>
 
@@ -848,55 +912,147 @@
     <li class="flex flex-col border-b-2 border-dashed border-white/40 pb-4">
       <div class="flex justify-between items-start">
         <span class="font-bold block">Soda Italiana</span>
-        <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$45</span>
+        <span class="font-bold text-xl sm:text-2xl lg:text-4xl"></span>
       </div>
       <ul class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-        <li>Arándano</li>
-        <li>Blueberry (Mora Azul)</li>
-        <li>Manzana Verde</li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Arándano</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Soda Italiana', '$42','Arándano')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Blueberry (Mora Azul)</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Soda Italiana', '$42','Blueberry (Mora Azul)')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+         <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Manzana Verde</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Soda Italiana', '$42','Manzana Verde')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
       </ul>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Agua Mineral "Perrier"</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$36</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Agua Mineral "Perrier"</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$36</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Agua Mineral Perrier', '$36','')"
+                title="Agregar"
+                >+</button>
+          </div>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Jarra de Agua del Día (2 litros)</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Jarra de Agua del Día (2 litros)</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Jarra de Agua del Día (2 litros)', '$65','')"
+                title="Agregar"
+                >+</button>
+          </div>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Botella de Agua</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$15</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Botella de Agua</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$15</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Botella de Agua', '$15','')"
+                title="Agregar"
+                >+</button>
+          </div>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Refrescos</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$25</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Refrescos</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$25</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Bebidas Frias', 'Refrescos', '$25','')"
+                title="Agregar"
+                >+</button>
+          </div>
     </li>
-
-    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
+     <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Capuccino Clásico Frío</span>
         <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-          Shot de espresso con leche fría y hielos al gusto.
+           Shot de espresso con leche fría 
+        </span>
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
+          y hielos al gusto.
         </span>
       </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$42</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Bebidas Frias', 'Capuccino Clásico Frío', '$42','Shot de espresso con leche fría y hielos al gusto.')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Affogato</span>
         <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-          Postre italiano con una bola de helado de vainilla y un shot de espresso.
+           Postre italiano con una bola de  
+        </span>
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
+          helado de vainilla y un shot de espresso.
         </span>
       </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$42</span>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$42</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Bebidas Frias', 'Affogato', '$42','Postre italiano con una bola de helado de vainilla y un shot de espresso.')"
+        title="Agregar"
+        >+</button>
     </li>
-
   </ul>
 </section>
 <!-- FRAPPÉS -->
@@ -906,53 +1062,135 @@
   </div>
 
   <ul id="frappes" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk space-y-6 overflow-x-auto whitespace-nowrap">
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Coco</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$48</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Coco</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$48</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Coco', '$48','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Mango</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$48</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Mango</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$48</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Mango', '$48','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Taro</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$52</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Taro</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$52</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Taro', '$52','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Capuccino</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$62</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Capuccino</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$62</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Capuccino', '$62','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Moca</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$66</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Moca</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$66</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Moca', '$66','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Bailey’s</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$85</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Bailey’s</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$85</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Bailey’s', '$85','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Oreo</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Oreo</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$65</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Oreo', '$65','')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Chocolate Mexicano</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Chocolate Mexicano</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$65</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Chocolate Mexicano', '$65','')"
+        title="Agregar"
+        >+</button>
     </li>
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Chocolate Blanco</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Chocolate Blanco</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$65</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Chocolate Blanco', '$65','')"
+        title="Agregar"
+        >+</button>
     </li>
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Chocolate Suizo</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Chocolate Suizo</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$65</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappés', 'Chocolate Suizo', '$65','')"
+        title="Agregar"
+        >+</button>
     </li>
   </ul>
 </section>
@@ -967,19 +1205,27 @@
     <!-- Introducción -->
     <li>
       <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-        ¡El delicioso Pan de Fiesta tradicional que ya conoces
+        ¡El delicioso Pan de Fiesta tradicional 
       </p>
       <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-        con nuestros exquisitos rellenos!
+        que ya conoces con nuestros exquisitos rellenos!
       </p>
     </li>
 
     <!-- Pan de Fiesta -->
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold">Pan de Fiesta</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$20</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Pan de Fiesta</span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$20</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Frappanaderia', 'Pan de Fiesta', '$20','')"
+        title="Agregar"
+        >+</button>
     </li>
-
     <!-- Pan de Fiesta Relleno -->
     <li class="flex flex-col border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold">Pan de Fiesta Relleno con:</span>
@@ -987,28 +1233,124 @@
         (Todos nuestros rellenos incluyen fruta y pana)
       </p>
       <ul class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-        <li class="flex justify-between"><span>Philadelphia</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$52</span></li>
-        <li class="flex justify-between"><span>Nata</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span></li>
-        <li class="flex justify-between"><span>Nutella</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$52</span></li>
-        <li class="flex justify-between"><span>Lechera</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$48</span></li>
-        <li class="flex justify-between"><span>Mermelada</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$46</span></li>
-        <li class="flex justify-between"><span>Cajeta</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$48</span></li>
-        <li class="flex justify-between"><span>Helado (3 Bolas)</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span></li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Philadelphia</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$52</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Pan de Fiesta relleno con ', '$52','Philadelphia')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Nata</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Pan de Fiesta relleno con ', '$55','Nata')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Nutella</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Pan de Fiesta relleno con ', '$52','Nutella')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Lechera</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$48</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Pan de Fiesta relleno con ', '$48','Lechera')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Mermelada</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$46</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Pan de Fiesta relleno con ', '$46','Mermelada')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Cajeta</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$48</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Pan de Fiesta relleno con ', '$48','Cajeta')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Helado (3 Bolas)</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Pan de Fiesta relleno con ', '$55','Helado (3 Bolas)')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
       </ul>
     </li>
 
     <!-- Conchas -->
-    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Conchas</span>
         <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-
           Oreo · Nuez · Chocolate · Vainilla
         </span>
       </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$20</span>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$20</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Panaderia', 'Conchas', '$42','Espresso y leche cremada a partes iguales.')"
+        title="Agregar"
+        >+</button>
     </li>
-
     <!-- Conchas Rellenas -->
     <li class="flex flex-col border-b-2 border-dashed border-white/40 pb-4">
       <span class="font-bold">Conchas Rellenas con:</span>
@@ -1016,13 +1358,104 @@
         (Todos nuestros rellenos incluyen fruta y pana)
       </p>
       <ul class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-        <li class="flex justify-between"><span>Nata</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$58</span></li>
-        <li class="flex justify-between"><span>Nutella</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span></li>
-        <li class="flex justify-between"><span>Philadelphia</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span></li>
-        <li class="flex justify-between"><span>Lechera</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$48</span></li>
-        <li class="flex justify-between"><span>Mermelada</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$46</span></li>
-        <li class="flex justify-between"><span>Cajeta</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$48</span></li>
-        <li class="flex justify-between"><span>Helado (3 Bolas)</span><span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span></li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Nata</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$58</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Concha rellena con ', '$58','Nata')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Nutella</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Concha rellena con ', '$55','Nutella')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Philadelphia</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Concha rellena con ', '$55','Philadelphia')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Lechera</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$48</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Concha rellena con ', '$48','Lechera')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Mermelada</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$46</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Concha rellena con ', '$46','Mermelada')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Cajeta</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$48</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Concha rellena con ', '$48','Cajeta')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
+        <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Helado (3 Bolas)</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Pan de Fiesta', 'Concha rellena con ', '$55','Helado (3 Bolas)')"
+                title="Agregar"
+                >+</button>
+          </div>
+        </li>
       </ul>
     </li>
 
@@ -1042,82 +1475,144 @@
   </div>
 
   <ul id="postres" class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl chalk space-y-8 overflow-x-auto whitespace-nowrap">
-
-    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
-      <div>
-        <span class="font-bold block">Pastel de chocolate</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1"></span>
-      </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$5</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Pastel de chocolate</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Postres', 'Pastel de chocolate', '$55','')"
+                title="Agregar"
+                >+</button>
+          </div>
     </li>
-
-    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
-      <div>
-        <span class="font-bold block">Tarta de Ferrero</span>
-        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1"></span>
-      </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$5</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Tarta de Ferrero</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Postres', 'Tarta de Ferrero', '$55','')"
+                title="Agregar"
+                >+</button>
+          </div>
     </li>
-
-    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
+    
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Copa de Helado</span>
         <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
           Acompañada de frutos de temporada.
         </span>
       </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$5</span>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$55</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Postres', 'Copa de Helado', '$55','Acompañada de frutos de temporada.')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Pay de Limón</span>
         <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-          Tarta combinada con una deliciosa base crujiente de
+          Tarta combinada con una deliciosa 
         </span>
         <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-          galleta y crema de limón.
+          base crujiente de galleta y 
+        </span>
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
+          crema de limón. 
         </span>
       </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$55</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Postres', 'Pay de Limón', '$55','Tarta combinada con una deliciosa base crujiente de galleta y crema de limón.')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-4">
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
       <div>
         <span class="font-bold block">Tiramisú</span>
         <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
-          Postre frío montado en capas de galleta, queso crema, un toque de café y cocoa italiana.
+          Postre frío montado en capas de galleta, 
+        </span>
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
+          queso crema, un toque de café 
+        </span>
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
+          y cocoa italiana.
         </span>
       </div>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$55</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Postres', 'Tiramisú', '$55','Tarta combinada con una deliciosa base crujiente de galleta y crema de limón.')"
+        title="Agregar"
+        >+</button>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold block">Concha</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$25</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Concha</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$55</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Postres', 'Concha', '$55','')"
+                title="Agregar"
+                >+</button>
+          </div>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold block">Concha (Variedad de Rellenos)</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$68</span>
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+          <div>
+            <span class="font-bold block text-white no-glow">Concha (Variedad de Rellenos)</span>
+          </div>
+          <!-- Contenedor derecho con precio y botón -->
+          <div class="flex items-center gap-4">
+            <span class="precio font-bold text-xl sm:text-2xl lg:text-4xl">$68</span>
+              <button
+                class="text-white text-3xl font-bold focus:outline-none"
+                onclick="openModal('Postres', 'Concha (Variedad de Rellenos)', '$68','')"
+                title="Agregar"
+                >+</button>
+          </div>
     </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold block">Pan de Fiesta</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$25</span>
-    </li>
-
-    <li class="flex justify-between items-center border-b-2 border-dashed border-white/40 pb-4">
-      <span class="font-bold block">Pan de Fiesta (Variedad de Rellenos)</span>
-      <span class="font-bold text-xl sm:text-2xl lg:text-4xl">$65</span>
-    </li>
-
+    <li class="flex justify-between items-start border-b-2 border-dashed border-white/40 pb-6">
+      <div>
+        <span class="font-bold block">Pan de Fiesta</span>
+        <span class="text-lg sm:text-xl md:text-2xl lg:text-3xl italic texto-descripcion leading-snug block mt-1">
+          (Variedad de Rellenos)
+        </span>
+      </div>
+      <!-- Contenedor derecho con precio y botón -->
+      <div class="flex items-center gap-4">
+      <span class="font-bold text-xl sm:text-2xl lg:text-4xl text-[#FFD700]">$65</span>
+      <button
+        class="text-white text-3xl font-bold focus:outline-none"
+        onclick="openModal('Postres', 'Pan de Fiesta', '$65','(Variedad de Rellenos)')"
+        title="Agregar"
+        >+</button>
+    </li>  
     <li class="text-center">
       <p class="text-base sm:text-lg lg:text-xl italic text-gray-400 leading-snug">
         Todo ingrediente extra tiene un costo adicional.
       </p>
     </li>
-
   </ul>
 </section>
 
